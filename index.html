@@ -1,0 +1,868 @@
+<!-- GitHub Pages Ready – Just upload index.html -->
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irolewe Laughter | Senior Fullstack Engineer Portfolio</title>
+    <meta name="description" content="Portfolio of Irolewe Laughter Chimezirim - A Senior Fullstack Engineer specializing in high-performance web applications, React, Next.js, and Node.js.">
+    <meta name="keywords" content="Fullstack Engineer, React Developer, Next.js, Web Development, Portfolio, Irolewe Laughter">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://laughter-portfolio.vercel.app/">
+    <meta property="og:title" content="Irolewe Laughter | Senior Fullstack Engineer">
+    <meta property="og:description" content="Premium web development services and high-performance applications.">
+    <meta property="og:image" content="https://laughter-portfolio.vercel.app/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Irolewe Laughter | Senior Fullstack Engineer">
+    <meta property="twitter:description" content="Premium web development services and high-performance applications.">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                        },
+                        dark: '#0f172a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); }
+        .dark .glass { background: rgba(15, 23, 42, 0.8); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #14b8a6; border-radius: 10px; }
+        
+        /* Premium Background Gradient */
+        .mesh-gradient {
+            background: radial-gradient(at 0% 0%, hsla(170, 80%, 50%, 0.1) 0, transparent 50%),
+                        radial-gradient(at 50% 0%, hsla(220, 80%, 50%, 0.1) 0, transparent 50%),
+                        radial-gradient(at 100% 0%, hsla(280, 80%, 50%, 0.1) 0, transparent 50%);
+        }
+        
+        /* Animated Background Blobs */
+        @keyframes orbit {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 30px); }
+            100% { transform: translate(0, 0); }
+        }
+        .blob { animation: orbit 10s infinite ease-in-out; }
+        
+        .nav-link.active { color: #14b8a6; font-weight: 700; }
+        .card-hover:hover { transform: translateY(-10px); box-shadow: 0 20px 40px -15px rgba(20, 184, 166, 0.15); }
+        
+        /* Premium Typography & Colors */
+        h1, h2, h3, h4 { letter-spacing: -0.025em; }
+        .text-gradient {
+            background: linear-gradient(to right, #14b8a6, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-premium {
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+            box-shadow: 0 10px 20px -5px rgba(20, 184, 166, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(20, 184, 166, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-dark text-slate-800 dark:text-slate-200 font-sans transition-colors duration-300">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <div class="text-xl font-bold tracking-tighter text-primary-600 dark:text-primary-500">
+                    Irolewe <span class="text-slate-900 dark:text-white">Laughter</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link hover:text-primary-500 transition-colors">Home</a>
+                    <a href="#about" class="nav-link hover:text-primary-500 transition-colors">About</a>
+                    <a href="#services" class="nav-link hover:text-primary-500 transition-colors">Services</a>
+                    <a href="#skills" class="nav-link hover:text-primary-500 transition-colors">Skills</a>
+                    <a href="#projects" class="nav-link hover:text-primary-500 transition-colors">Projects</a>
+                    <a href="#experience" class="nav-link hover:text-primary-500 transition-colors">Experience</a>
+                    <a href="#contact" class="bg-primary-600 text-white px-5 py-2 rounded-full hover:bg-primary-700 transition-all">Hire Me</a>
+                    
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+                        <i data-lucide="moon" id="theme-icon-dark" class="hidden"></i>
+                        <i data-lucide="sun" id="theme-icon-light" class="hidden"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Toggle -->
+                <div class="md:hidden flex items-center space-x-4">
+                    <button id="theme-toggle-mobile" class="p-2">
+                        <i data-lucide="moon" class="dark:hidden"></i>
+                        <i data-lucide="sun" class="hidden dark:block text-yellow-400"></i>
+                    </button>
+                    <button id="menu-btn" class="p-2">
+                        <i data-lucide="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden fixed inset-0 bg-white dark:bg-dark z-40 flex flex-col items-center justify-center space-y-8 text-2xl font-medium">
+            <button id="close-menu" class="absolute top-6 right-6"><i data-lucide="x" class="w-8 h-8"></i></button>
+            <a href="#home" class="mobile-link">Home</a>
+            <a href="#about" class="mobile-link">About</a>
+            <a href="#services" class="mobile-link">Services</a>
+            <a href="#skills" class="mobile-link">Skills</a>
+            <a href="#projects" class="mobile-link">Projects</a>
+            <a href="#experience" class="mobile-link">Experience</a>
+            <a href="#contact" class="mobile-link">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center relative overflow-hidden pt-20 mesh-gradient">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl blob"></div>
+            <div class="absolute bottom-1/4 -right-20 w-[30rem] h-[30rem] bg-blue-500/10 rounded-full blur-3xl blob" style="animation-delay: -5s;"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-30 pointer-events-none" 
+                 style="background-image: radial-gradient(#14b8a6 0.5px, transparent 0.5px); background-size: 30px 30px;"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl">
+                <h2 class="text-primary-600 dark:text-primary-500 font-semibold tracking-widest uppercase mb-4 reveal">Available for new opportunities</h2>
+                <h1 class="text-5xl md:text-7xl font-extrabold text-slate-900 dark:text-white leading-tight mb-6 reveal" style="transition-delay: 100ms;">
+                    Irolewe Laughter Chimezirim
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-600 dark:text-slate-400 mb-4 reveal" style="transition-delay: 200ms;">
+                    Full Stack Web Developer | Frontend Specialist
+                </p>
+                <p class="text-lg text-slate-500 dark:text-slate-500 mb-10 max-w-xl reveal" style="transition-delay: 300ms;">
+                    Building fast, beautiful, and user-friendly web experiences with React, Next.js & TypeScript.
+                </p>
+                
+                <div class="flex flex-wrap gap-4 reveal" style="transition-delay: 400ms;">
+                    <a href="#projects" class="px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-bold transition-all shadow-lg shadow-primary-500/25">View Projects</a>
+                    <a href="https://docs.google.com/document/d/1ogybKdYRgpKf5WsORcL0PtzijW51oCHA/edit?usp=drive_link&ouid=111431957614465200353&rtpof=true&sd=true" class="px-8 py-4 border border-slate-300 dark:border-slate-700 hover:border-primary-500 text-slate-700 dark:text-slate-300 rounded-lg font-bold transition-all">View CV</a>
+                </div>
+
+                <div class="mt-12 flex items-center space-x-6 reveal" style="transition-delay: 500ms;">
+                    <a href="github.com/IsaacMission042" class="text-slate-400 hover:text-primary-500 transition-colors"><i data-lucide="github"></i></a>
+                    <a href="www.linkedin.com/in/laughter-irolewe-42b730324" class="text-slate-400 hover:text-primary-500 transition-colors"><i data-lucide="linkedin"></i></a>
+                    <div class="h-px w-12 bg-slate-300 dark:bg-slate-700"></div>
+                    <span class="text-sm font-medium tracking-wider text-slate-400 uppercase">Umuahia, Abia State, Nigeria</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white dark:bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <div class="relative group">
+                        <div class="absolute -inset-4 bg-primary-500/20 rounded-2xl blur-lg group-hover:bg-primary-500/30 transition-all"></div>
+                        <!-- Placeholder for Image -->
+                        <div class="relative bg-slate-200 dark:bg-slate-800 aspect-square rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 flex items-center justify-center">
+                        <img class="" src="file_000000007f607246a4d09ef119d0fd41.png" alt="Profile Image">
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <h2 class="text-3xl font-bold mb-6">Professional Summary</h2>
+                    <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Dedicated and detail-oriented aspiring Full Stack Web Developer with a strong focus on frontend technologies. Currently pursuing a B.Sc. in Computer Science, with hands-on experience building modern, responsive web applications using React, Next.js, and TypeScript. 
+                    </p>
+                    <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Competent in full-stack development with Node.js, APIs, and databases. Committed to clean, maintainable code, performance optimization, accessibility (WCAG basics), and user-centric design.
+                    </p>
+                    
+                    <div class="mt-8 grid grid-cols-2 gap-4">
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800">
+                            <span class="block text-primary-500 font-bold text-2xl">B.Sc.</span>
+                            <span class="text-sm text-slate-500">Computer Science</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800">
+                            <span class="block text-primary-500 font-bold text-2xl">10+</span>
+                            <span class="text-sm text-slate-500">Projects Completed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- Services Section -->
+    <section id="services" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-primary-600 dark:text-primary-500 font-semibold tracking-widest uppercase mb-4">What I Do</h2>
+                <h3 class="text-4xl font-bold">Services & Solutions</h3>
+                <div class="w-20 h-1.5 bg-primary-500 mx-auto rounded-full mt-4"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 card-hover transition-all reveal">
+                    <div class="w-14 h-14 bg-primary-500/10 rounded-2xl flex items-center justify-center mb-6 text-primary-500">
+                        <i data-lucide="smartphone" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4">Responsive Web Design</h4>
+                    <p class="text-slate-500 dark:text-slate-400">Crafting beautiful, pixel-perfect interfaces that look stunning on any device, from mobile to ultra-wide monitors.</p>
+                </div>
+                <div class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 card-hover transition-all reveal" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 text-blue-500">
+                        <i data-lucide="zap" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4">Frontend Development</h4>
+                    <p class="text-slate-500 dark:text-slate-400">Building high-performance, interactive applications using React, Next.js, and modern TypeScript workflows.</p>
+                </div>
+                <div class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 card-hover transition-all reveal" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6 text-purple-500">
+                        <i data-lucide="database" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4">Fullstack Engineering</h4>
+                    <p class="text-slate-500 dark:text-slate-400">Integrating robust backends, secure APIs, and database solutions to bring complex business logic to life.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Technical Expertise</h2>
+                <div class="w-20 h-1.5 bg-primary-500 mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Group 1 -->
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 reveal">
+                    <div class="w-12 h-12 bg-primary-500/10 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="layout" class="text-primary-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Frontend Core</h3>
+                    <ul class="space-y-3 text-slate-600 dark:text-slate-400">
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-primary-500"></i> React / Next.js</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-primary-500"></i> TypeScript</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-primary-500"></i> Tailwind CSS</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-primary-500"></i> HTML5 / CSS3</li>
+                    </ul>
+                </div>
+
+                <!-- Group 2 -->
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 reveal" style="transition-delay: 100ms;">
+                    <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="server" class="text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Backend & Fullstack</h3>
+                    <ul class="space-y-3 text-slate-600 dark:text-slate-400">
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-blue-500"></i> Node.js / Express</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-blue-500"></i> RESTful APIs</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-blue-500"></i> Supabase / Firebase</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-blue-500"></i> PostgreSQL / Prisma</li>
+                    </ul>
+                </div>
+
+                <!-- Group 3 -->
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 reveal" style="transition-delay: 200ms;">
+                    <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="tool" class="text-purple-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Tools & DevOps</h3>
+                    <ul class="space-y-3 text-slate-600 dark:text-slate-400">
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-purple-500"></i> Git / GitHub</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-purple-500"></i> Vercel / Netlify</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-purple-500"></i> Postman</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-purple-500"></i> VS Code</li>
+                    </ul>
+                </div>
+
+                <!-- Group 4 -->
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 reveal" style="transition-delay: 300ms;">
+                    <div class="w-12 h-12 bg-orange-500/10 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="users" class="text-orange-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Soft Skills</h3>
+                    <ul class="space-y-3 text-slate-600 dark:text-slate-400">
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-orange-500"></i> Agile (Scrum)</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-orange-500"></i> Problem Solving</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-orange-500"></i> Technical Writing</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-orange-500"></i> Team Collaboration</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 bg-slate-100 dark:bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 reveal">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Selected Projects</h2>
+                    <p class="text-slate-500 max-w-lg">A showcase of full-stack applications and frontend interfaces built with modern technologies.</p>
+                </div>
+                <a href="https://github.com/[yourusername]" class="mt-4 md:mt-0 text-primary-500 font-bold flex items-center group">
+                    View all on GitHub <i data-lucide="arrow-right" class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <a href="project1.html" class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all reveal">
+                    <div class="aspect-video bg-slate-200 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+                        <div class="group-hover:scale-110 transition-transform duration-500 bg-primary-600/10 p-10 rounded-full">
+                            <i data-lucide="shopping-bag" class="w-12 h-12 text-primary-500"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-2 mb-3">
+                            <span class="text-[10px] font-bold tracking-widest uppercase px-2 py-1 bg-primary-500/10 text-primary-600 rounded">Next.js</span>
+                            <span class="text-[10px] font-bold tracking-widest uppercase px-2 py-1 bg-blue-500/10 text-blue-600 rounded">Stripe</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary-500 transition-colors">E-Commerce Platform</h3>
+                        <p class="text-slate-500 text-sm mb-6 line-clamp-2">Full-featured platform with Stripe integration, Sanity CMS, and high-performance server-side rendering.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-medium text-slate-400">View Details</span>
+                            <div class="flex space-x-3">
+                                <span class="p-2 bg-slate-100 dark:bg-slate-800 rounded-full hover:text-primary-500"><i data-lucide="external-link" class="w-4 h-4"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Project 2 -->
+                <a href="project2.html" class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all reveal" style="transition-delay: 100ms;">
+                    <div class="aspect-video bg-slate-200 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+                        <div class="group-hover:scale-110 transition-transform duration-500 bg-blue-600/10 p-10 rounded-full">
+                            <i data-lucide="check-square" class="w-12 h-12 text-blue-500"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-2 mb-3">
+                            <span class="text-[10px] font-bold tracking-widest uppercase px-2 py-1 bg-blue-500/10 text-blue-600 rounded">React</span>
+                            <span class="text-[10px] font-bold tracking-widest uppercase px-2 py-1 bg-green-500/10 text-green-600 rounded">Socket.io</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary-500 transition-colors">Collaborative Task Manager</h3>
+                        <p class="text-slate-500 text-sm mb-6 line-clamp-2">Real-time task synchronization for teams using Supabase and WebSockets.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-medium text-slate-400">View Details</span>
+                            <div class="flex space-x-3">
+                                <span class="p-2 bg-slate-100 dark:bg-slate-800 rounded-full hover:text-primary-500"><i data-lucide="external-link" class="w-4 h-4"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Project 3 -->
+                <a href="project3.html" class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all reveal" style="transition-delay: 200ms;">
+                    <div class="aspect-video bg-slate-200 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+                        <div class="group-hover:scale-110 transition-transform duration-500 bg-purple-600/10 p-10 rounded-full">
+                            <i data-lucide="pie-chart" class="w-12 h-12 text-purple-500"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-2 mb-3">
+                            <span class="text-[10px] font-bold tracking-widest uppercase px-2 py-1 bg-purple-500/10 text-purple-600 rounded">Prisma</span>
+                            <span class="text-[10px] font-bold tracking-widest uppercase px-2 py-1 bg-indigo-500/10 text-indigo-600 rounded">PostgreSQL</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary-500 transition-colors">Finance Tracker</h3>
+                        <p class="text-slate-500 text-sm mb-6 line-clamp-2">Advanced dashboard with Recharts, NextAuth, and automated expense categorization.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-medium text-slate-400">View Details</span>
+                            <div class="flex space-x-3">
+                                <span class="p-2 bg-slate-100 dark:bg-slate-800 rounded-full hover:text-primary-500"><i data-lucide="external-link" class="w-4 h-4"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold">Experience</h2>
+            </div>
+            
+            <div class="relative border-l-2 border-slate-200 dark:border-slate-800 ml-4 md:ml-0">
+                <!-- Exp 1 -->
+                <div class="mb-12 ml-8 relative reveal">
+                    <div class="absolute -left-[41px] top-0 w-5 h-5 bg-primary-500 rounded-full ring-4 ring-white dark:ring-dark"></div>
+                    <div class="flex flex-col md:flex-row md:justify-between mb-2">
+                        <h3 class="text-xl font-bold">Frontend Web Developer (Intern)</h3>
+                    </div>
+                    <p class="text-slate-500 font-medium mb-4">TechNova Solutions, Port Harcourt</p>
+                    <ul class="list-disc list-outside ml-4 text-slate-600 dark:text-slate-400 space-y-2">
+                        <li>Developed responsive UI components using React and Tailwind CSS.</li>
+                        <li>Collaborated with the backend team to integrate RESTful APIs.</li>
+                        <li>Optimized website performance, reducing load times by 20%.</li>
+                    </ul>
+                </div>
+
+                <!-- Exp 2 -->
+                <div class="mb-12 ml-8 relative reveal" style="transition-delay: 100ms;">
+                    <div class="absolute -left-[41px] top-0 w-5 h-5 bg-slate-300 dark:bg-slate-700 rounded-full ring-4 ring-white dark:ring-dark"></div>
+                    <div class="flex flex-col md:flex-row md:justify-between mb-2">
+                        <h3 class="text-xl font-bold">Junior Web Developer</h3>
+                    </div>
+                    <p class="text-slate-500 font-medium mb-4">Creative Digital Agency, Remote</p>
+                    <ul class="list-disc list-outside ml-4 text-slate-600 dark:text-slate-400 space-y-2">
+                        <li>Maintained client websites and implemented new features using WordPress and Custom CSS.</li>
+                        <li>Converted Figma designs into pixel-perfect, mobile-friendly HTML/CSS templates.</li>
+                    </ul>
+                </div>
+
+                <!-- Exp 3 -->
+                <div class="ml-8 relative reveal" style="transition-delay: 200ms;">
+                    <div class="absolute -left-[41px] top-0 w-5 h-5 bg-slate-300 dark:bg-slate-700 rounded-full ring-4 ring-white dark:ring-dark"></div>
+                    <div class="flex flex-col md:flex-row md:justify-between mb-2">
+                        <h3 class="text-xl font-bold">Freelance Frontend Developer</h3>
+                    </div>
+                    <p class="text-slate-500 font-medium mb-4">StartUp Incubator</p>
+                    <ul class="list-disc list-outside ml-4 text-slate-600 dark:text-slate-400 space-y-2">
+                        <li>Built landing pages and MVPs for early-stage startups using React.</li>
+                        <li>Ensured cross-browser compatibility and accessible design (WCAG).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-24 bg-white dark:bg-slate-900/50 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="reveal mb-12">
+                <h2 class="text-3xl font-bold mb-4">What People Say</h2>
+                <div class="w-20 h-1.5 bg-primary-500 mx-auto rounded-full"></div>
+            </div>
+            
+            <div id="testimonial-slider" class="relative reveal h-64 flex items-center justify-center">
+                <div class="testimonial-slide active transition-all duration-500 opacity-100 absolute w-full">
+                    <p class="text-2xl italic text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">"Laughter is an exceptional developer. His attention to detail in the frontend implementation was exactly what our project needed."</p>
+                    <div class="flex items-center justify-center space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-slate-300 dark:bg-slate-700 overflow-hidden">
+                            <i data-lucide="user" class="w-full h-full p-2 text-slate-400"></i>
+                        </div>
+                        <div class="text-left">
+                            <p class="font-bold text-slate-800 dark:text-white">John Doe</p>
+                            <p class="text-sm text-slate-500">CEO, TechNova Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-slide transition-all duration-500 opacity-0 absolute w-full pointer-events-none">
+                    <p class="text-2xl italic text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">"The collaborative task manager built by Laughter has significantly improved our team's productivity. A truly premium experience."</p>
+                    <div class="flex items-center justify-center space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-slate-300 dark:bg-slate-700 overflow-hidden">
+                            <i data-lucide="user" class="w-full h-full p-2 text-slate-400"></i>
+                        </div>
+                        <div class="text-left">
+                            <p class="font-bold text-slate-800 dark:text-white">Jane Smith</p>
+                            <p class="text-sm text-slate-500">Product Manager, StartupInc</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex justify-center space-x-3 mt-12">
+                <button onclick="prevTestimonial()" class="p-3 rounded-full bg-slate-100 dark:bg-slate-800 hover:text-primary-500 transition-colors"><i data-lucide="chevron-left"></i></button>
+                <button onclick="nextTestimonial()" class="p-3 rounded-full bg-slate-100 dark:bg-slate-800 hover:text-primary-500 transition-colors"><i data-lucide="chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insights Section -->
+    <section id="insights" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 reveal">
+                <div>
+                    <h2 class="text-primary-600 dark:text-primary-500 font-semibold tracking-widest uppercase mb-4">Writing</h2>
+                    <h3 class="text-4xl font-bold">Insights & Articles</h3>
+                </div>
+                <a href="#" class="mt-4 md:mt-0 text-primary-500 font-bold flex items-center group">
+                    Visit Blog <i data-lucide="arrow-right" class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Article 1 -->
+                <a href="insight1.html" class="group cursor-pointer reveal">
+                    <div class="aspect-video bg-slate-200 dark:bg-slate-800 rounded-2xl mb-6 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-primary-600/10 group-hover:bg-primary-600/20 transition-colors"></div>
+                        <i data-lucide="feather" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 text-primary-500/50 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <span class="text-xs font-bold text-primary-500 uppercase tracking-widest">Web Development</span>
+                    <h4 class="text-xl font-bold mt-2 group-hover:text-primary-500 transition-colors">The Future of React: Server Components and Beyond</h4>
+                    <p class="text-slate-500 mt-4 text-sm">Exploring how the shift to server-side rendering is changing the way we build modern web applications.</p>
+                </a>
+                <!-- Article 2 -->
+                <a href="insight2.html" class="group cursor-pointer reveal" style="transition-delay: 100ms;">
+                    <div class="aspect-video bg-slate-200 dark:bg-slate-800 rounded-2xl mb-6 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-blue-600/10 group-hover:bg-blue-600/20 transition-colors"></div>
+                        <i data-lucide="shield" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 text-blue-500/50 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <span class="text-xs font-bold text-blue-500 uppercase tracking-widest">Cybersecurity</span>
+                    <h4 class="text-xl font-bold mt-2 group-hover:text-primary-500 transition-colors">Securing Your Fullstack Apps in 2024</h4>
+                    <p class="text-slate-500 mt-4 text-sm">A comprehensive guide to implementing robust authentication and data protection in your projects.</p>
+                </a>
+                <!-- Article 3 -->
+                <a href="insight3.html" class="group cursor-pointer reveal" style="transition-delay: 200ms;">
+                    <div class="aspect-video bg-slate-200 dark:bg-slate-800 rounded-2xl mb-6 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-purple-600/10 group-hover:bg-purple-600/20 transition-colors"></div>
+                        <i data-lucide="layout" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 text-purple-500/50 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <span class="text-xs font-bold text-purple-500 uppercase tracking-widest">UI/UX Design</span>
+                    <h4 class="text-xl font-bold mt-2 group-hover:text-primary-500 transition-colors">Designing for Accessibility: A Developer's Perspective</h4>
+                    <p class="text-slate-500 mt-4 text-sm">Why inclusivity is the key to creating successful digital products and how to achieve it.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Certs -->
+    <section id="education" class="py-24 bg-slate-50 dark:bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16">
+                <div class="reveal">
+                    <h2 class="text-2xl font-bold mb-8 flex items-center"><i data-lucide="graduation-cap" class="mr-3 text-primary-500"></i> Education</h2>
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="font-bold">B.Sc. Computer Science (In Progress)</h3>
+                            <p class="text-slate-500 italic">Federal University of Technology Owerri (FUTO)</p>
+                            <p class="text-sm text-slate-400 mt-2">Relevant Coursework: Data Structures & Algorithms, Database Management, Web Engineering, Software Engineering.</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">WASSCE / WAEC</h3>
+                            <p class="text-slate-500">Secondary Education Certificate</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">SSCE / NECO</h3>
+                            <p class="text-slate-500">Senior School Certificate Examination</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="reveal" style="transition-delay: 100ms;">
+                    <h2 class="text-2xl font-bold mb-8 flex items-center"><i data-lucide="award" class="mr-3 text-primary-500"></i> Certifications</h2>
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="font-bold">Frontend Development with React</h3>
+                            <p class="text-slate-500">Coursera</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-primary-600 rounded-3xl overflow-hidden shadow-2xl reveal">
+                <div class="grid md:grid-cols-2">
+                    <div class="p-8 md:p-16 text-white">
+                        <h2 class="text-4xl font-bold mb-6">Let's work together</h2>
+                        <p class="text-primary-100 text-lg mb-8">Currently available for freelance projects and full-time opportunities. Reach out and let's build something amazing!</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center mr-4"><i data-lucide="mail" class="w-5 h-5"></i></div>
+                                <span>laughterirolewe@gmail.com</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center mr-4"><i data-lucide="phone" class="w-5 h-5"></i></div>
+                                <span>+234 0703 332 7515</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center mr-4"><i data-lucide="map-pin" class="w-5 h-5"></i></div>
+                                <span>Umuahia, Abia State, Nigeria</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-slate-800 p-8 md:p-16">
+                        <form id="contact-form" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Name</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-primary-500 outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Email</label>
+                                <input type="email" required class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-primary-500 outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Message</label>
+                                <textarea rows="4" required class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-primary-500 outline-none transition-all"></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-4 bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-lg transition-all shadow-lg">Send Message</button>
+                        </form>
+                        <div id="form-success" class="hidden mt-4 p-4 bg-green-100 text-green-700 rounded-lg text-center">
+                            Message sent successfully!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-slate-500 text-sm mb-4 md:mb-0">© 2024 Irolewe Laughter Chimezirim.</p>
+            <div class="flex space-x-8 text-sm font-medium">
+                <a href="#home" class="text-slate-500 hover:text-primary-500">Home</a>
+                <a href="#projects" class="text-slate-500 hover:text-primary-500">Projects</a>
+                <a href="https://www.linkedin.com/in/laughter-irolewe-42b730324" class="text-slate-500 hover:text-primary-500">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-dark/80 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto relative z-10 p-8 shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-4 right-4 p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full"><i data-lucide="x"></i></button>
+            <div id="modal-content">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Lucide Icons
+        lucide.createIcons();
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.onscroll = () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass', 'shadow-md', 'py-3');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.remove('glass', 'shadow-md', 'py-3');
+                navbar.classList.add('py-4');
+            }
+            reveal();
+        };
+
+        // Dark Mode Toggle Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+        const html = document.documentElement;
+
+        const toggleTheme = () => {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                updateThemeIcons('light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                updateThemeIcons('dark');
+            }
+        };
+
+        const updateThemeIcons = (theme) => {
+            const darkIcon = document.getElementById('theme-icon-dark');
+            const lightIcon = document.getElementById('theme-icon-light');
+            if (theme === 'dark') {
+                darkIcon.classList.add('hidden');
+                lightIcon.classList.remove('hidden');
+            } else {
+                darkIcon.classList.remove('hidden');
+                lightIcon.classList.add('hidden');
+            }
+        };
+
+        themeToggle.addEventListener('click', toggleTheme);
+        themeToggleMobile.addEventListener('click', toggleTheme);
+
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+            updateThemeIcons('dark');
+        } else {
+            html.classList.remove('dark');
+            updateThemeIcons('light');
+        }
+
+        // Mobile Menu
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => mobileMenu.classList.remove('hidden'));
+        closeMenu.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        mobileLinks.forEach(link => link.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+        // Reveal Animation on Scroll
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Run once on load
+
+        // Project Modal Logic
+        const projects = {
+            ecom: {
+                title: "Full-Featured E-Commerce Platform",
+                desc: "A production-ready store with secure checkout and inventory management.",
+                stack: ["Next.js", "TypeScript", "Tailwind", "Stripe", "Sanity CMS"],
+                longDesc: "Built with the latest Next.js App Router, this platform features a performant storefront, real-time inventory management through Sanity CMS, and a secure payment gateway integration with Stripe."
+            },
+            task: {
+                title: "Real-time Task Manager",
+                desc: "Collaboration tool for remote teams.",
+                stack: ["React", "Socket.io", "Supabase", "Node.js"],
+                longDesc: "A collaborative environment where multiple users can manage projects and tasks. Real-time updates are handled via WebSockets, ensuring everyone sees changes instantly without refreshing."
+            },
+            finance: {
+                title: "Personal Finance Tracker",
+                desc: "Visualizing financial health with interactive charts.",
+                stack: ["Next.js", "Recharts", "Prisma", "PostgreSQL"],
+                longDesc: "Comprehensive dashboard for tracking income and expenses. Users can visualize spending habits through interactive charts and generate monthly reports."
+            }
+        };
+
+        function openModal(id) {
+            const project = projects[id];
+            const content = document.getElementById('modal-content');
+            content.innerHTML = `
+                <h3 class="text-3xl font-bold mb-4">${project.title}</h3>
+                <div class="flex flex-wrap gap-2 mb-6">
+                    ${project.stack.map(tech => `<span class="px-3 py-1 bg-primary-500/10 text-primary-600 rounded-full text-xs font-bold">${tech}</span>`).join('')}
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">${project.longDesc}</p>
+                <div class="flex gap-4">
+                    <a href="#" class="flex-1 text-center py-3 bg-primary-600 text-white font-bold rounded-lg">Live Demo</a>
+                    <a href="#" class="flex-1 text-center py-3 border border-slate-200 dark:border-slate-700 font-bold rounded-lg">GitHub</a>
+                </div>
+            `;
+            document.getElementById('project-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('project-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Contact Form Validation
+        const contactForm = document.getElementById('contact-form');
+        const formSuccess = document.getElementById('form-success');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simple validation check
+            const inputs = this.querySelectorAll('input, textarea');
+            let isValid = true;
+            
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    input.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    input.classList.remove('border-red-500');
+                }
+            });
+            
+            if (isValid) {
+                const btn = this.querySelector('button');
+                const originalText = btn.innerHTML;
+                btn.disabled = true;
+                btn.innerHTML = '<i data-lucide="loader-2" class="animate-spin inline-block mr-2"></i> Sending...';
+                lucide.createIcons();
+                
+                setTimeout(() => {
+                    this.classList.add('hidden');
+                    formSuccess.classList.remove('hidden');
+                    formSuccess.classList.add('animate-bounce');
+                }, 1500);
+            }
+        });
+
+        // Testimonial logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.testimonial-slide');
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+                slide.classList.toggle('opacity-100', i === index);
+                slide.classList.toggle('opacity-0', i !== index);
+                slide.classList.toggle('pointer-events-none', i !== index);
+                slide.style.transform = i === index ? 'translateX(0)' : (i < index ? 'translateX(-50px)' : 'translateX(50px)');
+            });
+        }
+        function nextTestimonial() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+        function prevTestimonial() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+        
+        // Scrollspy logic
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

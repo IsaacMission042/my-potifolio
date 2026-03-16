@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaborative Task Manager | Irolewe Laughter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { 50: '#f0fdfa', 100: '#ccfbf1', 500: '#14b8a6', 600: '#0d9488', 700: '#0f766e' },
+                        dark: '#0f172a',
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <style>
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); }
+        .dark .glass { background: rgba(15, 23, 42, 0.8); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background: #14b8a6; border-radius: 10px; }
+        
+        .mesh-gradient {
+            background: radial-gradient(at 0% 0%, hsla(170, 80%, 50%, 0.1) 0, transparent 50%),
+                        radial-gradient(at 50% 0%, hsla(220, 80%, 50%, 0.1) 0, transparent 50%),
+                        radial-gradient(at 100% 0%, hsla(280, 80%, 50%, 0.1) 0, transparent 50%);
+        }
+        
+        @keyframes orbit {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(20px, 20px); }
+            100% { transform: translate(0, 0); }
+        }
+        .blob { animation: orbit 10s infinite ease-in-out; }
+        
+        h1, h2, h3 { letter-spacing: -0.025em; }
+        .text-gradient {
+            background: linear-gradient(to right, #14b8a6, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        .btn-premium {
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+            box-shadow: 0 10px 20px -5px rgba(20, 184, 166, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(20, 184, 166, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-dark text-slate-800 dark:text-slate-200 font-sans transition-colors duration-300">
+    <nav class="fixed w-full z-50 glass py-4 border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <a href="index.html" class="flex items-center text-primary-600 font-bold hover:text-primary-700 transition-colors">
+                <i data-lucide="arrow-left" class="mr-2"></i> Back to Portfolio
+            </a>
+            <div class="text-xl font-bold tracking-tighter">
+                Irolewe <span class="text-slate-900 dark:text-white">Laughter</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="fixed inset-0 z-0 pointer-events-none mesh-gradient">
+        <div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl blob"></div>
+        <div class="absolute bottom-1/4 -right-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl blob" style="animation-delay: -5s;"></div>
+    </div>
+
+    <main class="pt-32 pb-24">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <div class="flex gap-2 mb-4">
+                    <span class="px-3 py-1 bg-blue-500/10 text-blue-600 rounded-full text-xs font-bold uppercase tracking-widest">React</span>
+                    <span class="px-3 py-1 bg-green-500/10 text-green-600 rounded-full text-xs font-bold uppercase tracking-widest">Socket.io</span>
+                    <span class="px-3 py-1 bg-purple-500/10 text-purple-600 rounded-full text-xs font-bold uppercase tracking-widest">Supabase</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white mb-6 text-gradient">Collaborative Task Manager</h1>
+                <p class="text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl reveal">
+                    Real-time collaboration tool for teams to manage projects and tasks with instant updates.
+                </p>
+            </div>
+
+            <div class="aspect-video bg-slate-200 dark:bg-slate-800 rounded-3xl overflow-hidden mb-12 flex items-center justify-center border border-slate-200 dark:border-slate-700 reveal relative group">
+                <div class="absolute inset-0 bg-blue-600/5 group-hover:bg-blue-600/10 transition-colors"></div>
+                <i data-lucide="check-square" class="w-24 h-24 text-blue-500/50 group-hover:scale-110 transition-transform duration-500"></i>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="md:col-span-2 space-y-8">
+                    <section>
+                        <h2 class="text-2xl font-bold mb-4">Project Overview</h2>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            A collaborative platform designed to streamline team workflows. Using WebSockets for real-time synchronization, users can see task updates, status changes, and comments as they happen. Supabase handles authentication and the distributed database layer.
+                        </p>
+                    </section>
+                    <section>
+                        <h2 class="text-2xl font-bold mb-4">Key Features</h2>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><i data-lucide="check-circle" class="w-5 h-5 text-blue-500 mr-3 mt-1"></i> Real-time multi-user task updates</li>
+                            <li class="flex items-start"><i data-lucide="check-circle" class="w-5 h-5 text-blue-500 mr-3 mt-1"></i> Drag-and-drop Kanban board interface</li>
+                            <li class="flex items-start"><i data-lucide="check-circle" class="w-5 h-5 text-blue-500 mr-3 mt-1"></i> Role-based access control</li>
+                            <li class="flex items-start"><i data-lucide="check-circle" class="w-5 h-5 text-blue-500 mr-3 mt-1"></i> Team presence and activity indicators</li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="space-y-8">
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
+                        <h3 class="font-bold mb-4">Technologies</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg text-sm">React</span>
+                            <span class="px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg text-sm">Socket.io</span>
+                            <span class="px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg text-sm">Supabase</span>
+                            <span class="px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg text-sm">Node.js</span>
+                            <span class="px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg text-sm">Framer Motion</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-4 reveal" style="transition-delay: 200ms;">
+                        <a href="#" class="w-full py-4 btn-premium text-white rounded-xl font-bold text-center">Live Demo <i data-lucide="external-link" class="inline-block ml-1 w-4 h-4"></i></a>
+                        <a href="#" class="w-full py-4 border border-slate-200 dark:border-slate-700 rounded-xl font-bold text-center hover:border-primary-500 transition-all dark:bg-slate-900">View Code <i data-lucide="github" class="inline-block ml-1 w-4 h-4"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-12 border-t border-slate-200 dark:border-slate-800 text-center">
+        <p class="text-slate-500 text-sm">© 2024 Irolewe Laughter Chimezirim.</p>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Designing for Accessibility | Irolewe Laughter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { 50: '#f0fdfa', 100: '#ccfbf1', 500: '#14b8a6', 600: '#0d9488', 700: '#0f766e' },
+                        dark: '#0f172a',
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <style>
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); }
+        .dark .glass { background: rgba(15, 23, 42, 0.8); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background: #14b8a6; border-radius: 10px; }
+        
+        .mesh-gradient {
+            background: radial-gradient(at 0% 0%, hsla(170, 80%, 50%, 0.1) 0, transparent 50%),
+                        radial-gradient(at 50% 0%, hsla(220, 80%, 50%, 0.1) 0, transparent 50%),
+                        radial-gradient(at 100% 0%, hsla(280, 80%, 50%, 0.1) 0, transparent 50%);
+        }
+        
+        @keyframes orbit {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(20px, 20px); }
+            100% { transform: translate(0, 0); }
+        }
+        .blob { animation: orbit 10s infinite ease-in-out; }
+        
+        h1, h2, h3 { letter-spacing: -0.025em; }
+        .text-gradient {
+            background: linear-gradient(to right, #a855f7, #6366f1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-dark text-slate-800 dark:text-slate-200 font-sans transition-colors duration-300">
+    <nav class="fixed w-full z-50 glass py-4 border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <a href="index.html" class="flex items-center text-primary-600 font-bold hover:text-primary-700 transition-colors">
+                <i data-lucide="arrow-left" class="mr-2"></i> Back to Home
+            </a>
+            <div class="text-xl font-bold tracking-tighter">
+                Irolewe <span class="text-slate-900 dark:text-white">Laughter</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="fixed inset-0 z-0 pointer-events-none mesh-gradient">
+        <div class="absolute top-1/4 -left-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl blob"></div>
+        <div class="absolute bottom-1/4 -right-20 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl blob" style="animation-delay: -5s;"></div>
+    </div>
+
+    <main class="pt-32 pb-24 relative z-10">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12 reveal">
+                <span class="text-purple-500 font-bold uppercase tracking-widest text-xs">UI/UX Design • January 2024</span>
+                <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white mt-4 mb-8 text-gradient">Designing for Accessibility: A Developer's Perspective</h1>
+                <div class="flex items-center space-x-4 mb-12">
+                    <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">L</div>
+                    <div>
+                        <p class="font-bold text-slate-900 dark:text-white text-sm">Irolewe Laughter</p>
+                        <p class="text-slate-500 text-xs">Fullstack Engineer</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="aspect-video bg-slate-200 dark:bg-slate-800 rounded-3xl overflow-hidden mb-12 flex items-center justify-center border border-slate-200 dark:border-slate-700 reveal">
+                <i data-lucide="layout" class="w-24 h-24 text-purple-500/30"></i>
+            </div>
+
+            <div class="prose prose-lg dark:prose-invert max-w-none text-slate-600 dark:text-slate-400 leading-relaxed space-y-6 reveal">
+                <p class="text-xl font-medium text-slate-800 dark:text-slate-200">Accessibility is not just about compliance; it's about inclusion. Great design is only great if it can be used by everyone.</p>
+                
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-12">Semantic HTML First</h2>
+                <p>The foundation of accessibility is semantic HTML. Using buttons for actions, anchors for navigation, and landmarks for page structure ensures that assistive technologies can interpret your content correctly.</p>
+                
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-12">Color and Contrast</h2>
+                <p>Ensuring sufficient color contrast isn't just for users with visual impairments; it helps everyone in low-light environments. Tools like the WCAG Contrast Checker are essential.</p>
+                
+                <blockquote class="border-l-4 border-purple-500 pl-6 italic text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/50 py-4 rounded-r-xl">
+                    "Accessibility should never be an afterthought. It should be baked into the design process from the very first wireframe."
+                </blockquote>
+
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-12">Keyboard Navigation</h2>
+                <p>Every interactive element must be reachable and controllable via keyboard alone. This means clear focus states and logical tab orders are non-negotiable.</p>
+            </div>
+            
+            <div class="mt-16 pt-8 border-t border-slate-200 dark:border-slate-800 flex justify-between items-center reveal">
+                <div class="flex space-x-4">
+                    <button class="text-slate-500 hover:text-purple-500 transition-colors"><i data-lucide="share-2" class="w-5 h-5"></i></button>
+                    <button class="text-slate-500 hover:text-purple-500 transition-colors"><i data-lucide="universal-access" class="w-5 h-5"></i></button>
+                </div>
+                <div class="flex space-x-2">
+                    <span class="px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded-full text-xs">#A11y</span>
+                    <span class="px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded-full text-xs">#UXDesign</span>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer class="py-12 border-t border-slate-200 dark:border-slate-800 text-center">
+        <p class="text-slate-500 text-sm">© 2024 Irolewe Laughter Chimezirim.</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        
+        // Reveal animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

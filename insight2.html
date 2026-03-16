@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Securing Fullstack Apps | Irolewe Laughter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { 50: '#f0fdfa', 100: '#ccfbf1', 500: '#14b8a6', 600: '#0d9488', 700: '#0f766e' },
+                        dark: '#0f172a',
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <style>
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); }
+        .dark .glass { background: rgba(15, 23, 42, 0.8); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background: #14b8a6; border-radius: 10px; }
+        
+        .mesh-gradient {
+            background: radial-gradient(at 0% 0%, hsla(170, 80%, 50%, 0.1) 0, transparent 50%),
+                        radial-gradient(at 50% 0%, hsla(220, 80%, 50%, 0.1) 0, transparent 50%),
+                        radial-gradient(at 100% 0%, hsla(280, 80%, 50%, 0.1) 0, transparent 50%);
+        }
+        
+        @keyframes orbit {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(20px, 20px); }
+            100% { transform: translate(0, 0); }
+        }
+        .blob { animation: orbit 10s infinite ease-in-out; }
+        
+        h1, h2, h3 { letter-spacing: -0.025em; }
+        .text-gradient {
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-dark text-slate-800 dark:text-slate-200 font-sans transition-colors duration-300">
+    <nav class="fixed w-full z-50 glass py-4 border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <a href="index.html" class="flex items-center text-primary-600 font-bold hover:text-primary-700 transition-colors">
+                <i data-lucide="arrow-left" class="mr-2"></i> Back to Home
+            </a>
+            <div class="text-xl font-bold tracking-tighter">
+                Irolewe <span class="text-slate-900 dark:text-white">Laughter</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="fixed inset-0 z-0 pointer-events-none mesh-gradient">
+        <div class="absolute top-1/4 -right-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl blob"></div>
+        <div class="absolute bottom-1/4 -left-20 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl blob" style="animation-delay: -5s;"></div>
+    </div>
+
+    <main class="pt-32 pb-24 relative z-10">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12 reveal">
+                <span class="text-blue-500 font-bold uppercase tracking-widest text-xs">Cybersecurity • February 2024</span>
+                <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white mt-4 mb-8 text-gradient">Securing Your Fullstack Apps in 2024</h1>
+                <div class="flex items-center space-x-4 mb-12">
+                    <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">L</div>
+                    <div>
+                        <p class="font-bold text-slate-900 dark:text-white text-sm">Irolewe Laughter</p>
+                        <p class="text-slate-500 text-xs">Fullstack Engineer</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="aspect-video bg-slate-200 dark:bg-slate-800 rounded-3xl overflow-hidden mb-12 flex items-center justify-center border border-slate-200 dark:border-slate-700 reveal">
+                <i data-lucide="shield" class="w-24 h-24 text-blue-500/30"></i>
+            </div>
+
+            <div class="prose prose-lg dark:prose-invert max-w-none text-slate-600 dark:text-slate-400 leading-relaxed space-y-6 reveal">
+                <p class="text-xl font-medium text-slate-800 dark:text-slate-200">Security is not a feature; it's a prerequisite. Modern web applications face increasingly sophisticated threats, and as developers, our responsibility has never been greater.</p>
+                
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-12">The Shift to Zero Trust</h2>
+                <p>Zero Trust architecture assumes that no user or system is trustworthy by default. Every request must be authenticated, authorized, and validated, regardless of its origin.</p>
+                
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-12">Beyond Simple Authentication</h2>
+                <p>While JWTs and cookies are standard, we must look deeper at CSRF protection, Content Security Policies (CSP), and robust input sanitization to prevent XSS attacks.</p>
+                
+                <blockquote class="border-l-4 border-blue-500 pl-6 italic text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/50 py-4 rounded-r-xl">
+                    "A secure application is a result of a security-first mindset, where every line of code is written with potential vulnerabilities in mind."
+                </blockquote>
+
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-12">Data Protection</h2>
+                <p>Implementing encryption at rest and in transit is fundamental. Use environment variables for secrets and never hardcode API keys or database credentials.</p>
+            </div>
+            
+            <div class="mt-16 pt-8 border-t border-slate-200 dark:border-slate-800 flex justify-between items-center reveal">
+                <div class="flex space-x-4">
+                    <button class="text-slate-500 hover:text-blue-500 transition-colors"><i data-lucide="share-2" class="w-5 h-5"></i></button>
+                    <button class="text-slate-500 hover:text-blue-500 transition-colors"><i data-lucide="shield-check" class="w-5 h-5"></i></button>
+                </div>
+                <div class="flex space-x-2">
+                    <span class="px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded-full text-xs">#Security</span>
+                    <span class="px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded-full text-xs">#Fullstack</span>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer class="py-12 border-t border-slate-200 dark:border-slate-800 text-center">
+        <p class="text-slate-500 text-sm">© 2024 Irolewe Laughter Chimezirim.</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        
+        // Reveal animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
