@@ -1,193 +1,358 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Collaborative Task Manager | Irolewe Laughter</title>
+    <title>Irolewe Laughter | Senior Full-Stack Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
                     colors: {
-                        primary: { 50: '#f0fdfa', 100: '#ccfbf1', 500: '#14b8a6', 600: '#0d9488', 700: '#0f766e' },
-                        dark: '#0f172a',
-                    },
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                        brand: {
+                            50: "#f0fdfa",
+                            500: "#14b8a6",
+                            600: "#0d9488",
+                            900: "#0f766e",
+                        },
+                        dark: '#020617',
+                    }
                 }
             }
         }
     </script>
     <style>
-        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); }
-        .dark .glass { background: rgba(15, 23, 42, 0.8); }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-thumb { background: #14b8a6; border-radius: 10px; }
         
         .mesh-gradient {
-            background: 
-                radial-gradient(at 0% 0%, hsla(170, 80%, 50%, 0.15) 0, transparent 50%),
-                radial-gradient(at 50% 0%, hsla(220, 80%, 50%, 0.15) 0, transparent 50%),
-                radial-gradient(at 100% 0%, hsla(280, 80%, 50%, 0.15) 0, transparent 50%);
-        }
-        
-        @keyframes orbit {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(20px, 20px) scale(1.05); }
-            100% { transform: translate(0, 0) scale(1); }
-        }
-        .blob { animation: orbit 15s infinite ease-in-out; filter: blur(60px); }
-        
-        /* Starfield Effect */
-        .stars-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 0;
-        }
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: twinkle var(--duration) infinite ease-in-out;
-        }
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
+            background: radial-gradient(at 0% 0%, hsla(170, 80%, 50%, 0.12) 0, transparent 50%),
+                        radial-gradient(at 100% 0%, hsla(220, 80%, 50%, 0.1) 0, transparent 50%),
+                        radial-gradient(at 50% 100%, hsla(280, 80%, 50%, 0.05) 0, transparent 50%);
+            background-color: #020617;
         }
 
-        h1, h2, h3 { letter-spacing: -0.03em; }
-        .text-gradient {
-            background: linear-gradient(135deg, #14b8a6, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-        }
-        .btn-premium {
-            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
-            box-shadow: 0 10px 25px -5px rgba(20, 184, 166, 0.4);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .btn-premium:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 40px -5px rgba(20, 184, 166, 0.5);
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .dark .glass-card {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .text-gradient { background: linear-gradient(135deg, #14b8a6, #3b82f6, #8b5cf6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        .float { animation: float 6s ease-in-out infinite; }
+
+        .star { position: absolute; background: white; border-radius: 50%; opacity: 0.3; animation: twinkle var(--duration) infinite ease-in-out; }
+        @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #14b8a6; border-radius: 10px; }
     </style>
 </head>
-<body class="bg-slate-50 dark:bg-dark text-slate-800 dark:text-slate-200 font-sans transition-colors duration-300">
-    <nav class="fixed w-full z-50 glass py-4 border-b border-slate-200 dark:border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-            <a href="index.html" class="flex items-center text-primary-600 font-bold hover:text-primary-700 transition-colors">
-                <i data-lucide="arrow-left" class="mr-2"></i> Back to Portfolio
+<body class="bg-dark text-slate-300 antialiased selection:bg-brand-500/30">
+
+    <!-- Background Layer -->
+    <div class="fixed inset-0 z-0 mesh-gradient pointer-events-none">
+        <div id="star-field" class="relative w-full h-full opacity-40"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-[100] transition-all duration-300 py-6 px-6" id="navbar">
+        <div class="max-w-7xl mx-auto flex items-center justify-between glass rounded-2xl px-6 py-3">
+            <a href="index.html" class="flex items-center text-brand-500 font-bold hover:text-brand-600 transition-colors">
+                <i data-lucide="arrow-left" class="mr-2 w-5 h-5"></i> Back to Home
             </a>
-            <div class="flex items-center space-x-6">
-                <div class="text-xl font-bold tracking-tighter">
-                    Irolewe <span class="text-slate-900 dark:text-white">Laughter</span>
+
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center">
+                    <i data-lucide="zap" class="text-white w-5 h-5 fill-white"></i>
                 </div>
-                <a href="mailto:laughterirolewe@gmail.com" class="hidden md:block bg-primary-600 text-white px-5 py-2 rounded-full hover:bg-primary-700 transition-all text-sm">Hire Me</a>
+                <div class="text-white font-bold text-xl tracking-tighter">Irolewe <span class="text-brand-500">Laughter</span></div>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <a href="mailto:laughterirolewe@gmail.com" class="bg-white text-dark px-5 py-2 rounded-xl text-sm font-bold hover:bg-brand-50 transition-all shadow-lg hidden sm:block">Hire Me</a>
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-slate-800 transition-colors">
+                    <i data-lucide="moon" class="text-slate-400"></i>
+                </button>
             </div>
         </div>
     </nav>
 
-    <div class="fixed inset-0 z-0 pointer-events-none mesh-gradient">
-        <div class="stars-container opacity-20 dark:opacity-40">
-            <div class="star" style="top: 15%; left: 10%; width: 2px; height: 2px; --duration: 4s;"></div>
-            <div class="star" style="top: 40%; left: 85%; width: 1px; height: 1px; --duration: 3s;"></div>
-            <div class="star" style="top: 65%; left: 25%; width: 3px; height: 3px; --duration: 5s;"></div>
-            <div class="star" style="top: 80%; left: 60%; width: 2px; height: 2px; --duration: 4.5s;"></div>
+    <!-- Hero Section -->
+    <header class="relative pt-48 pb-32 px-6">
+        <div class="max-w-7xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center space-x-2 glass px-4 py-2 rounded-full mb-8 reveal">
+                <span class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-primary-500"></span>
+                </span>
+                <span class="text-xs font-bold text-slate-300 tracking-widest uppercase">Syncra v2.0 Case Study</span>
+            </div>
+            
+            <h1 class="text-6xl md:text-9xl font-black text-white mb-8 tracking-tighter reveal">
+                Syncra: Redefining <br><span class="text-gradient">Collaboration.</span>
+            </h1>
+            
+            <p class="max-w-3xl mx-auto text-xl md:text-2xl text-slate-400 mb-12 leading-relaxed reveal">
+                A high-performance, real-time workspace designed for hyper-productive teams. 
+                Seamless synchronization across all devices with sub-50ms latency.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 reveal">
+                <a href="#" class="w-full sm:w-auto px-10 py-5 bg-brand-600 text-white rounded-2xl font-black text-lg hover:scale-105 transition-transform shadow-2xl shadow-brand-600/20">Live Demo</a>
+                <a href="#" class="w-full sm:w-auto px-10 py-5 glass text-white rounded-2xl font-black text-lg hover:bg-white/5 transition-all">Source Code</a>
+            </div>
+
+            <!-- Floating Preview Element -->
+            <div class="mt-24 relative max-w-5xl mx-auto reveal float">
+                <div class="absolute inset-0 bg-primary-600/20 blur-[120px] rounded-full"></div>
+                <div class="glass p-2 rounded-[2.5rem] border-white/10 shadow-3xl overflow-hidden">
+                    <img src="project2_hero.png" class="w-full h-auto rounded-[2rem] opacity-90 transition-all duration-1000" alt="Syncra Dashboard Preview">
+                </div>
+            </div>
         </div>
-        <div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl blob"></div>
-        <div class="absolute bottom-1/4 -right-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl blob" style="animation-delay: -5s;"></div>
-    </div>
+    </header>
 
-    <main class="pt-32 pb-24">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-12">
-                <div class="flex gap-2 mb-4">
-                    <span class="px-3 py-1 bg-blue-500/10 text-blue-600 rounded-full text-xs font-bold uppercase tracking-widest">React</span>
-                    <span class="px-3 py-1 bg-green-500/10 text-green-600 rounded-full text-xs font-bold uppercase tracking-widest">Socket.io</span>
-                    <span class="px-3 py-1 bg-purple-500/10 text-purple-600 rounded-full text-xs font-bold uppercase tracking-widest">Supabase</span>
-                </div>
-                <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white mb-6 text-gradient">Collaborative Task Manager</h1>
-                <p class="text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl reveal">
-                    Real-time collaboration tool for teams to manage projects and tasks with instant updates.
-                </p>
+    <!-- Core Features Bento Grid -->
+    <section id="features" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 reveal">
+                <h2 class="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter uppercase">Infinite <br><span class="text-gradient">Workspace.</span></h2>
+                <p class="text-slate-500 max-w-xl">Syncra eliminates the boundary between creative thought and shared execution with zero-latency synchronization.</p>
             </div>
-
-            <div class="aspect-video bg-slate-200 dark:bg-slate-800 rounded-3xl overflow-hidden mb-12 flex items-center justify-center border border-slate-200 dark:border-slate-700 reveal relative group">
-                <img src="https://images.unsplash.com/photo-1580894894513-541e068a3e2b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Collaborative Interface" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-slate-900/40 group-hover:bg-slate-900/20 transition-colors duration-500"></div>
-                <div class="relative z-10 p-6 rounded-full bg-white/10 backdrop-blur-md border border-white/20 group-hover:scale-110 group-hover:bg-white/20 transition-all duration-500">
-                    <i data-lucide="check-square" class="w-16 h-16 text-white"></i>
-                </div>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-12">
-                <div class="md:col-span-2 space-y-8">
-                    <section>
-                        <h2 class="text-2xl font-bold mb-4">Project Overview</h2>
-                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                            A collaborative platform designed to streamline team workflows. Using WebSockets for real-time synchronization, users can see task updates, status changes, and comments as they happen. Supabase handles authentication and the distributed database layer.
-                        </p>
-                    </section>
-                    <section>
-                        <h2 class="text-2xl font-bold mb-4">Key Features</h2>
-                        <ul class="space-y-3">
-                            <li class="flex items-start"><i data-lucide="check-circle" class="w-5 h-5 text-blue-500 mr-3 mt-1"></i> Real-time multi-user task updates</li>
-                            <li class="flex items-start"><i data-lucide="check-circle" class="w-5 h-5 text-blue-500 mr-3 mt-1"></i> Drag-and-drop Kanban board interface</li>
-                            <li class="flex items-start"><i data-lucide="check-circle" class="w-5 h-5 text-blue-500 mr-3 mt-1"></i> Role-based access control</li>
-                            <li class="flex items-start"><i data-lucide="check-circle" class="w-5 h-5 text-blue-500 mr-3 mt-1"></i> Team presence and activity indicators</li>
-                        </ul>
-                    </section>
-                </div>
-                <div class="space-y-8">
-                    <div class="glass-card p-8 rounded-3xl border border-slate-200 dark:border-slate-800">
-                        <h3 class="font-bold mb-6 text-xl">Technologies</h3>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl text-sm font-medium">React</span>
-                            <span class="px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl text-sm font-medium">Socket.io</span>
-                            <span class="px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl text-sm font-medium">Supabase</span>
-                            <span class="px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl text-sm font-medium">Node.js</span>
-                            <span class="px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl text-sm font-medium">Framer Motion</span>
+            
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <!-- Feature 1: Socket Engine -->
+                <div class="md:col-span-8 glass p-10 rounded-[2.5rem] relative overflow-hidden group reveal">
+                    <div class="relative z-10 h-full flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 bg-primary-600/20 rounded-2xl flex items-center justify-center mb-8">
+                                <i data-lucide="zap" class="text-primary-500 w-8 h-8"></i>
+                            </div>
+                            <h3 class="text-3xl font-bold text-white mb-4">Sub-50ms Sync Engine</h3>
+                            <p class="text-slate-400 text-lg max-w-md">Our custom WebSocket implementation ensures that every keystroke and movement is mirrored across all clients globally in less than 50 milliseconds.</p>
+                        </div>
+                        <div class="mt-12 flex space-x-3">
+                            <span class="glass px-4 py-2 rounded-full text-[10px] font-bold text-primary-400 uppercase tracking-widest">Socket.io V4</span>
+                            <span class="glass px-4 py-2 rounded-full text-[10px] font-bold text-blue-400 uppercase tracking-widest">Redis Pub/Sub</span>
                         </div>
                     </div>
-                    <div class="flex flex-col gap-4 reveal" style="transition-delay: 200ms;">
-                        <a href="#" class="w-full py-5 btn-premium text-white rounded-2xl font-bold text-center flex items-center justify-center">Live Demo <i data-lucide="external-link" class="ml-2 w-4 h-4"></i></a>
-                        <a href="#" class="w-full py-5 border border-slate-200 dark:border-slate-700 rounded-2xl font-bold text-center hover:border-primary-500 transition-all dark:bg-slate-900 flex items-center justify-center">View Code <i data-lucide="github" class="ml-2 w-4 h-4"></i></a>
+                    <!-- Background Illustration -->
+                    <div class="absolute -right-20 -bottom-20 opacity-5 group-hover:opacity-10 transition-opacity">
+                        <i data-lucide="refresh-cw" class="w-96 h-96 animate-spin-slow"></i>
+                    </div>
+                </div>
+
+                <!-- Feature 2: RLS Security -->
+                <div class="md:col-span-4 glass p-10 rounded-[2.5rem] reveal" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 bg-emerald-600/20 rounded-2xl flex items-center justify-center mb-8">
+                        <i data-lucide="shield-check" class="text-emerald-500 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Enterprise Guard</h3>
+                    <p class="text-slate-400">Row-level security at the database layer ensures data isolation for even the most sensitive projects.</p>
+                </div>
+
+                <!-- Feature 3: Team Presence -->
+                <div class="md:col-span-4 glass p-10 rounded-[2.5rem] reveal" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 bg-purple-600/20 rounded-2xl flex items-center justify-center mb-8">
+                        <i data-lucide="users" class="text-purple-500 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Live Presence</h3>
+                    <p class="text-slate-400">Visual occupancy indicators and real-time cursor tracking for seamless pair-productivity.</p>
+                </div>
+
+                <!-- Feature 4: Tech Deep Dive -->
+                <div class="md:col-span-8 glass p-10 rounded-[2.5rem] overflow-hidden reveal" style="transition-delay: 300ms;">
+                    <div class="flex flex-col lg:flex-row gap-12 items-center">
+                        <div class="flex-1">
+                            <h3 class="text-3xl font-bold text-white mb-6">Built for Scale</h3>
+                            <p class="text-slate-400 mb-8 leading-relaxed">Leveraging the power of Next.js and Supabase, we've built a system that handles thousands of concurrent connections without breaking a sweat.</p>
+                            <div class="space-y-4">
+                                <div class="flex items-center text-white/70 text-sm">
+                                    <div class="w-2 h-2 rounded-full bg-primary-500 mr-3"></div>
+                                    Distributed State Management
+                                </div>
+                                <div class="flex items-center text-white/70 text-sm">
+                                    <div class="w-2 h-2 rounded-full bg-primary-500 mr-3"></div>
+                                    Optimistic UI Updates
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-1 w-full bg-slate-950 rounded-2xl border border-white/5 p-6 font-mono text-xs">
+                            <div class="flex space-x-2 mb-6 text-slate-700">
+                                <div class="w-2 h-2 rounded-full bg-current"></div>
+                                <div class="w-2 h-2 rounded-full bg-current"></div>
+                                <div class="w-2 h-2 rounded-full bg-current"></div>
+                            </div>
+                            <p class="text-primary-500 mb-2">// Listen for remote edits</p>
+                            <p class="text-blue-400">channel.<span class="text-white">on</span>(<span class="text-emerald-400">'broadcast'</span>, { <span class="text-white">event</span>: <span class="text-emerald-400">'cursor'</span> }, (payload) => {</p>
+                            <p class="pl-4 text-white">updateCursor(payload.userId, payload.coords);</p>
+                            <p class="text-blue-400">});</p>
+                            <p class="text-slate-600 mt-6">// Current Cluster Uptime: 99.998%</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
 
-    <footer class="py-12 border-t border-slate-200 dark:border-slate-800 text-center">
-        <p class="text-slate-500 text-sm">© 2024 Irolewe Laughter Chimezirim.</p>
+    <!-- Syncra Live Dev Lab -->
+    <section id="lab" class="py-32 px-6 bg-white/[0.01]">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="reveal">
+                    <h2 class="text-4xl md:text-6xl font-black text-white mb-10 tracking-tighter uppercase">The Collab <span class="text-primary-500">Engine.</span></h2>
+                    <p class="text-xl text-slate-400 mb-12 leading-relaxed">Observe the underlying heartbeat of Syncra as it manages concurrent data streams and validates security protocols in real-time.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="glass p-6 rounded-2xl flex items-center justify-between group hover:bg-white/5 transition-all">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-blue-600/20 flex items-center justify-center text-blue-500 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="radio" class="w-6 h-6"></i>
+                                </div>
+                                <span class="font-bold text-white">WebSocket Clusters</span>
+                            </div>
+                            <span class="text-xs font-mono text-primary-500">ACTIVE: 14 REGIONS</span>
+                        </div>
+                        <div class="glass p-6 rounded-2xl flex items-center justify-between group hover:bg-white/5 transition-all">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-purple-600/20 flex items-center justify-center text-purple-500 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="database" class="text-purple-500 w-6 h-6"></i>
+                                </div>
+                                <span class="font-bold text-white">Supabase Realtime</span>
+                            </div>
+                            <span class="text-xs font-mono text-primary-500">LATENCY: 12ms</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass rounded-[2rem] p-8 reveal relative shadow-3xl">
+                    <div class="absolute -top-4 -right-4 bg-primary-600 px-4 py-2 rounded-xl text-[10px] font-black tracking-widest text-white shadow-xl animate-bounce">LABS_MODE</div>
+                    
+                    <div class="flex items-center justify-between mb-8">
+                        <div>
+                            <h4 class="text-xs font-black text-slate-500 uppercase tracking-widest mb-1">Collaboration Pulse</h4>
+                            <p class="text-xl font-bold text-white">Real-Time Event Stream</p>
+                        </div>
+                        <div class="flex items-center px-3 py-1 bg-primary-500/10 text-primary-500 rounded-full text-[10px] font-bold">
+                            <span class="w-2 h-2 rounded-full bg-primary-500 animate-pulse mr-2"></span> STREAMING
+                        </div>
+                    </div>
+
+                    <div id="live-logs" class="space-y-3 font-mono text-[10px] h-[300px] overflow-hidden">
+                        <!-- Simulated logs populate here -->
+                    </div>
+
+                    <div class="mt-8 pt-8 border-t border-white/5 grid grid-cols-2 gap-4">
+                        <div class="glass p-5 rounded-2xl">
+                            <p class="text-[10px] font-bold text-slate-600 uppercase tracking-wide mb-2">Cluster CPU</p>
+                            <div class="h-1 bg-white/5 rounded-full overflow-hidden">
+                                <div class="h-full bg-primary-500 animate-pulse" style="width: 42%"></div>
+                            </div>
+                        </div>
+                        <div class="glass p-5 rounded-2xl">
+                            <p class="text-[10px] font-bold text-slate-600 uppercase tracking-wide mb-2">Memory Load</p>
+                            <div class="h-1 bg-white/5 rounded-full overflow-hidden">
+                                <div class="h-full bg-blue-500 animate-pulse" style="width: 58%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-48 relative overflow-hidden text-center">
+        <div class="max-w-4xl mx-auto px-6 relative z-10 reveal">
+            <h2 class="text-5xl md:text-8xl font-black text-white mb-10 tracking-tighter">Let's build the <span class="text-gradient">next revolution.</span></h2>
+            <p class="text-xl text-slate-500 mb-12 max-w-xl mx-auto">Currently accepting high-impact roles and ambitious freelance partnerships.</p>
+            <a href="mailto:laughterirolewe@gmail.com" class="inline-flex items-center px-12 py-6 bg-primary-600 text-white rounded-[2rem] font-black text-2xl hover:scale-105 transition-transform shadow-2xl shadow-primary-500/40">
+                START A CONVERSATION <i data-lucide="mail" class="ml-4"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 bg-dark border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center justify-center md:justify-start space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center">
+                            <i data-lucide="zap" class="text-white w-5 h-5 fill-white"></i>
+                        </div>
+                        <span class="text-white font-bold text-xl tracking-tighter">Irolewe <span class="text-brand-500">Laughter</span></span>
+                    </div>
+                    <p class="text-slate-500 text-sm max-w-xs leading-relaxed">Full-Stack Engineer specializing in high-performance SaaS and autonomous digital ecosystems.</p>
+                </div>
+
+                <div class="flex flex-col space-y-4">
+                    <h4 class="text-white font-bold text-sm uppercase tracking-widest">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="github.com/IsaacMission042" class="w-10 h-10 glass rounded-lg flex items-center justify-center hover:text-brand-500 transition-all"><i data-lucide="github" class="w-5 h-5"></i></a>
+                        <a href="https://www.linkedin.com/in/laughter-irolewe-42b730324" class="w-10 h-10 glass rounded-lg flex items-center justify-center hover:text-brand-500 transition-all"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                        <a href="mailto:laughterirolewe@gmail.com" class="w-10 h-10 glass rounded-lg flex items-center justify-center hover:text-brand-500 transition-all"><i data-lucide="mail" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
+                <p>© 2024 Irolewe Laughter Chimezirim. All rights reserved.</p>
+                <div class="flex space-x-8 mt-4 md:mt-0">
+                    <a href="index.html" class="hover:text-white transition-colors">Home</a>
+                    <a href="index.html#projects" class="hover:text-white transition-colors">Case Studies</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <script>
+        // Initialize Lucide
         lucide.createIcons();
 
-        // Reveal animation
+        // Dark Mode Toggle Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            const isDark = html.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-3');
+            } else {
+                nav.classList.remove('py-3');
+            }
+        });
+
+        // Create Starfield
+        const starField = document.getElementById('star-field');
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            const size = Math.random() * 3 + 'px';
+            star.style.width = size;
+            star.style.height = size;
+            star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+            starField.appendChild(star);
+        }
+
+        // Reveal Animation logic
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -197,6 +362,34 @@
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Live Log Simulation for Syncra
+        const logsContainer = document.getElementById('live-logs');
+        const logPatterns = [
+            { t: 'BROADCAST: Cursor_Move (User_482)', c: 'text-primary-500' },
+            { t: 'WS_EVENT: Document_Sync (Main_Library)', c: 'text-emerald-400' },
+            { t: 'PEER: New high-speed connection', c: 'text-blue-400' },
+            { t: 'DB_PUSH: RL_Security_Validated', c: 'text-purple-400' },
+            { t: 'SIGNAL: Heartbeat OK (Regional_Node_7)', c: 'text-slate-500' },
+            { t: 'OPTIMISTIC_LOCK: Version_Mismatch_Resolved', c: 'text-orange-400' }
+        ];
+
+        setInterval(() => {
+            const pattern = logPatterns[Math.floor(Math.random() * logPatterns.length)];
+            const time = new Date().toLocaleTimeString('en-GB', { hour12: false });
+            const log = document.createElement('div');
+            log.className = `${pattern.c} transition-all opacity-0 transform translate-x-2`;
+            log.innerHTML = `<span class="opacity-30">[${time}]</span> ${pattern.t}`;
+            logsContainer.prepend(log);
+            
+            setTimeout(() => {
+                log.classList.remove('opacity-0', 'translate-x-2');
+            }, 10);
+
+            if (logsContainer.children.length > 15) {
+                logsContainer.lastChild.remove();
+            }
+        }, 1500);
     </script>
 </body>
 </html>

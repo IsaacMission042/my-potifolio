@@ -1,202 +1,422 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finance Tracker | Irolewe Laughter</title>
+    <title>Irolewe Laughter | Senior Full-Stack Engineer Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        primary: { 50: '#f0fdfa', 100: '#ccfbf1', 500: '#14b8a6', 600: '#0d9488', 700: '#0f766e' },
-                        dark: '#0f172a',
-                    },
                     fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            50: "#f0fdfa",
+                            500: "#14b8a6",
+                            600: "#0d9488",
+                            900: "#0f766e",
+                        },
+                        dark: '#0f172a',
+                    }
                 }
             }
         }
     </script>
     <style>
-        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); }
-        .dark .glass { background: rgba(15, 23, 42, 0.8); }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-thumb { background: #14b8a6; border-radius: 10px; }
         
         .mesh-gradient {
-            background: 
-                radial-gradient(at 0% 0%, hsla(170, 80%, 50%, 0.15) 0, transparent 50%),
-                radial-gradient(at 50% 0%, hsla(220, 80%, 50%, 0.15) 0, transparent 50%),
-                radial-gradient(at 100% 0%, hsla(280, 80%, 50%, 0.15) 0, transparent 50%);
-        }
-        
-        @keyframes orbit {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(20px, 20px) scale(1.05); }
-            100% { transform: translate(0, 0) scale(1); }
-        }
-        .blob { animation: orbit 15s infinite ease-in-out; filter: blur(60px); }
-        
-        /* Starfield Effect */
-        .stars-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 0;
-        }
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: twinkle var(--duration) infinite ease-in-out;
-        }
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
+            background: radial-gradient(at 0% 0%, hsla(170, 80%, 50%, 0.12) 0, transparent 50%),
+                        radial-gradient(at 100% 0%, hsla(220, 80%, 50%, 0.1) 0, transparent 50%),
+                        radial-gradient(at 50% 100%, hsla(280, 80%, 50%, 0.05) 0, transparent 50%);
+            background-color: #020617;
         }
 
-        h1, h2, h3 { letter-spacing: -0.03em; }
-        .text-gradient {
-            background: linear-gradient(135deg, #14b8a6, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-        }
-        .btn-premium {
-            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
-            box-shadow: 0 10px 25px -5px rgba(20, 184, 166, 0.4);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .btn-premium:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 40px -5px rgba(20, 184, 166, 0.5);
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .dark .glass-card {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .glass-card { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .text-gradient { background: linear-gradient(135deg, #14b8a6, #3b82f6, #8b5cf6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        .float { animation: float 6s ease-in-out infinite; }
+
+        .star { position: absolute; background: white; border-radius: 50%; opacity: 0.3; animation: twinkle var(--duration) infinite ease-in-out; }
+        @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #14b8a6; border-radius: 10px; }
     </style>
 </head>
-<body class="bg-slate-50 dark:bg-dark text-slate-800 dark:text-slate-200 font-sans transition-colors duration-300">
-    <nav class="fixed w-full z-50 glass py-4 border-b border-slate-200 dark:border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-            <a href="index.html" class="flex items-center text-primary-600 font-bold hover:text-primary-700 transition-colors">
-                <i data-lucide="arrow-left" class="mr-2"></i> Back to Portfolio
-            </a>
-            <div class="flex items-center space-x-6">
-                <div class="text-xl font-bold tracking-tighter">
-                    Irolewe <span class="text-slate-900 dark:text-white">Laughter</span>
-                </div>
-                <a href="mailto:laughterirolewe@gmail.com" class="hidden md:block bg-primary-600 text-white px-5 py-2 rounded-full hover:bg-primary-700 transition-all text-sm">Hire Me</a>
-            </div>
-        </div>
-    </nav>
+<body class="bg-dark text-slate-300 antialiased selection:bg-brand-500/30">
 
-    <div class="fixed inset-0 z-0 pointer-events-none mesh-gradient">
-        <div class="stars-container opacity-20 dark:opacity-40">
-            <div class="star" style="top: 20%; left: 15%; width: 2px; height: 2px; --duration: 3.5s;"></div>
-            <div class="star" style="top: 50%; left: 80%; width: 1px; height: 1px; --duration: 4.2s;"></div>
-            <div class="star" style="top: 75%; left: 30%; width: 3px; height: 3px; --duration: 5.5s;"></div>
-            <div class="star" style="top: 10%; left: 60%; width: 2px; height: 2px; --duration: 3s;"></div>
-        </div>
-        <div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl blob"></div>
-        <div class="absolute bottom-1/4 -right-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl blob" style="animation-delay: -5s;"></div>
+    <!-- Background Layer -->
+    <div class="fixed inset-0 z-0 mesh-gradient pointer-events-none">
+        <div id="star-field" class="relative w-full h-full opacity-40"></div>
     </div>
 
-    <main class="pt-32 pb-24">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-12">
-                <div class="flex gap-2 mb-4">
-                    <span class="px-3 py-1 bg-purple-500/10 text-purple-600 rounded-full text-xs font-bold uppercase tracking-widest">Prisma</span>
-                    <span class="px-3 py-1 bg-indigo-500/10 text-indigo-600 rounded-full text-xs font-bold uppercase tracking-widest">PostgreSQL</span>
-                    <span class="px-3 py-1 bg-pink-500/10 text-pink-600 rounded-full text-xs font-bold uppercase tracking-widest">Next.js</span>
-                </div>
-                <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white mb-6 text-gradient">Personal Finance Tracker</h1>
-                <p class="text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl reveal">
-                    Advanced dashboard for tracking expenses and visualizing financial health with interactive charts.
-                </p>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-[100] transition-all duration-300 py-6 px-6" id="navbar">
+      <div class="max-w-7xl mx-auto flex items-center justify-between glass rounded-2xl px-6 py-3">
+        <a href="index.html" class="flex items-center text-brand-500 font-bold hover:text-brand-600 transition-colors">
+          <i data-lucide="arrow-left" class="mr-2 w-5 h-5"></i> Back to Home
+        </a>
+
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center">
+            <i data-lucide="zap" class="text-white w-5 h-5 fill-white"></i>
+          </div>
+          <div class="text-white font-bold text-xl tracking-tighter">Irolewe <span class="text-brand-500">Laughter</span></div>
+        </div>
+
+        <div class="flex items-center space-x-4">
+          <a
+            href="mailto:laughterirolewe@gmail.com"
+            class="bg-white text-dark px-5 py-2 rounded-xl text-sm font-bold hover:bg-brand-50 transition-all shadow-lg hidden sm:block"
+            >Hire Me</a
+          >
+          <button id="theme-toggle" class="p-2 rounded-full hover:bg-slate-800 transition-colors">
+            <i data-lucide="moon" class="text-slate-400"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-48 pb-32 px-6">
+        <div class="max-w-7xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center space-x-2 glass px-4 py-2 rounded-full mb-8 reveal">
+                <span class="flex h-2 w-2 rounded-full bg-primary-500 animate-pulse"></span>
+                <span class="text-xs font-bold text-slate-400 tracking-widest uppercase">Fintech Solutions Case Study</span>
+            </div>
+            
+            <h1 class="text-6xl md:text-9xl font-black text-white mb-8 tracking-tighter reveal">
+                Fintech: Precision <br><span class="text-gradient">Analytics Engineering.</span>
+            </h1>
+            
+            <p class="max-w-3xl mx-auto text-xl md:text-2xl text-slate-400 mb-12 leading-relaxed reveal">
+                Building secure, pixel-perfect financial dashboards that turn complex numeric data into actionable insights for modern enterprise.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 reveal">
+                <a href="#" class="w-full sm:w-auto px-10 py-5 bg-white text-dark rounded-2xl font-black text-lg hover:scale-105 transition-transform shadow-2xl">Live Platform</a>
+                <a href="#" class="w-full sm:w-auto px-10 py-5 glass text-white rounded-2xl font-black text-lg hover:bg-white/5 transition-all">Case Documentation</a>
             </div>
 
-            <div class="aspect-video bg-slate-200 dark:bg-slate-800 rounded-3xl overflow-hidden mb-12 flex items-center justify-center border border-slate-200 dark:border-slate-700 reveal relative group">
-                <img src="https://images.unsplash.com/photo-1647510283848-1884fb01e887?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Analytics Interface" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-slate-900/40 group-hover:bg-slate-900/20 transition-colors duration-500"></div>
-                <div class="relative z-10 p-6 rounded-full bg-white/10 backdrop-blur-md border border-white/20 group-hover:scale-110 group-hover:bg-white/20 transition-all duration-500">
-                    <i data-lucide="pie-chart" class="w-16 h-16 text-white"></i>
+            <div class="mt-24 relative max-w-5xl mx-auto reveal float">
+                <div class="absolute inset-0 bg-primary-600/10 blur-[100px] rounded-full"></div>
+                <div class="glass p-2 rounded-[2.5rem] border-white/10 shadow-3xl overflow-hidden">
+                    <img src="project3_hero.png" class="w-full h-auto rounded-[2rem] opacity-90 transition-all duration-1000" alt="Fintech Analytics Preview">
                 </div>
             </div>
+        </div>
+    </header>
 
-            <div class="grid md:grid-cols-3 gap-12">
-                <div class="md:col-span-2 space-y-8">
-                    <section>
-                        <h2 class="text-2xl font-bold mb-4">Project Overview</h2>
-                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                            Comprehensive dashboard for tracking income and expenses. Users can visualize spending habits through interactive charts built with Recharts, manage categories, and generate monthly reports. The app uses Prisma ORM with PostgreSQL for robust data management.
-                        </p>
-                    </section>
-                    <section>
-                        <h2 class="text-2xl font-bold mb-4">Key Features</h2>
-                        <ul class="space-y-3">
-                            <li class="flex items-start"><i data-lucide="check-circle" class="w-5 h-5 text-purple-500 mr-3 mt-1"></i> Interactive data visualization with Recharts</li>
-                            <li class="flex items-start"><i data-lucide="check-circle" class="w-5 h-5 text-purple-500 mr-3 mt-1"></i> Automated expense categorization</li>
-                            <li class="flex items-start"><i data-lucide="check-circle" class="w-5 h-5 text-purple-500 mr-3 mt-1"></i> Monthly budget tracking and alerts</li>
-                            <li class="flex items-start"><i data-lucide="check-circle" class="w-5 h-5 text-purple-500 mr-3 mt-1"></i> Exportable financial reports (PDF/CSV)</li>
-                        </ul>
-                    </section>
-                </div>
-                <div class="space-y-8">
-                    <div class="glass-card p-8 rounded-3xl border border-slate-200 dark:border-slate-800">
-                        <h3 class="font-bold mb-6 text-xl">Technologies</h3>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl text-sm font-medium">Next.js 14</span>
-                            <span class="px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl text-sm font-medium">Recharts</span>
-                            <span class="px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl text-sm font-medium">Prisma</span>
-                            <span class="px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl text-sm font-medium">PostgreSQL</span>
-                            <span class="px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl text-sm font-medium">NextAuth</span>
+    <!-- Projects Section -->
+    <!-- Core Engine Features -->
+    <section id="features" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 reveal">
+                <h2 class="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter">Precision <br><span class="text-gradient">Financials.</span></h2>
+                <p class="text-slate-400 max-w-xl">Turning complex transactional data into high-fidelity financial insights through advanced analytics engineering.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                <!-- Large Card: Analytics Engine -->
+                <div class="md:col-span-8 glass p-12 rounded-[3rem] relative overflow-hidden group reveal">
+                    <div class="relative z-10 flex flex-col justify-between h-full">
+                        <div>
+                            <div class="w-16 h-16 bg-purple-600/20 rounded-2xl flex items-center justify-center mb-10">
+                                <i data-lucide="bar-chart-3" class="text-purple-400 w-8 h-8"></i>
+                            </div>
+                            <h3 class="text-4xl font-bold text-white mb-6">Autonomous Reconciliation</h3>
+                            <p class="text-slate-400 text-lg max-w-lg leading-relaxed">
+                                Our platform utilizes advanced Prisma ORM logic to automatically reconcile thousands of transactions daily against banking APIs with 99.99% accuracy.
+                            </p>
+                        </div>
+                        <div class="mt-12 flex flex-wrap gap-4">
+                            <div class="px-5 py-2 glass rounded-full text-xs font-bold text-purple-300 border-purple-500/20">POSTGRES_CLUSTER_01</div>
+                            <div class="px-5 py-2 glass rounded-full text-xs font-bold text-emerald-300 border-emerald-500/20">PCI-DSS COMPLIANT</div>
                         </div>
                     </div>
-                    <div class="flex flex-col gap-4 reveal" style="transition-delay: 200ms;">
-                        <a href="#" class="w-full py-5 btn-premium text-white rounded-2xl font-bold text-center flex items-center justify-center">Live Demo <i data-lucide="external-link" class="ml-2 w-4 h-4"></i></a>
-                        <a href="#" class="w-full py-5 border border-slate-200 dark:border-slate-700 rounded-2xl font-bold text-center hover:border-primary-500 transition-all dark:bg-slate-900 flex items-center justify-center">View Code <i data-lucide="github" class="ml-2 w-4 h-4"></i></a>
+                    <i data-lucide="line-chart" class="absolute -right-16 -bottom-16 w-80 h-80 text-white/[0.03] group-hover:text-purple-500/10 transition-all duration-700"></i>
+                </div>
+
+                <!-- Card: Fraud Detection -->
+                <div class="md:col-span-4 glass p-10 rounded-[3rem] reveal" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 bg-red-600/20 rounded-2xl flex items-center justify-center mb-8">
+                        <i data-lucide="shield-alert" class="text-red-500 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">AI Fraud Shield</h3>
+                    <p class="text-slate-400">Instant anomaly detection flagging suspicious patterns before they impact your balance.</p>
+                </div>
+
+                <!-- Card: Multi-Currency -->
+                <div class="md:col-span-4 glass p-10 rounded-[3rem] reveal" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 bg-brand-600/20 rounded-2xl flex items-center justify-center mb-8">
+                        <i data-lucide="globe" class="text-brand-400 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Global Settlement</h3>
+                    <p class="text-slate-400">Support for 30+ currencies with real-time exchange rate normalization for accurate reporting.</p>
+                </div>
+
+                <!-- Large Card: Data Visualization -->
+                <div class="md:col-span-8 glass p-12 rounded-[3rem] overflow-hidden reveal" style="transition-delay: 300ms;">
+                    <div class="flex flex-col lg:flex-row gap-16 items-center">
+                        <div class="flex-1">
+                            <h3 class="text-3xl font-bold text-white mb-6">Pixel-Perfect Dashboards</h3>
+                            <p class="text-slate-400 mb-8 leading-relaxed">
+                                Custom Recharts implementation delivering buttery-smooth data visualizations 
+                                optimized for heavy data loads on any device.
+                            </p>
+                            <ul class="space-y-4">
+                                <li class="flex items-center text-sm text-white/60"><i data-lucide="check" class="text-brand-500 mr-3 w-4 h-4"></i> Dark/Light mode optimized</li>
+                                <li class="flex items-center text-sm text-white/60"><i data-lucide="check" class="text-brand-500 mr-3 w-4 h-4"></i> Export to PDF / CSV engine</li>
+                            </ul>
+                        </div>
+                        <div class="flex-1 w-full relative">
+                            <!-- Visual Decoration -->
+                            <div class="bg-dark rounded-2xl border border-white/5 p-8 shadow-2xl relative">
+                                <div class="flex justify-between items-end gap-3 h-32 mb-6">
+                                    <div class="flex-1 bg-purple-500/30 rounded-t-lg h-[40%] animate-pulse"></div>
+                                    <div class="flex-1 bg-purple-500/50 rounded-t-lg h-[70%] animate-pulse" style="animation-delay: 0.1s"></div>
+                                    <div class="flex-1 bg-purple-500/40 rounded-t-lg h-[50%] animate-pulse" style="animation-delay: 0.2s"></div>
+                                    <div class="flex-1 bg-brand-500 rounded-t-lg h-[90%] animate-pulse" style="animation-delay: 0.3s"></div>
+                                    <div class="flex-1 bg-purple-500/20 rounded-t-lg h-[30%] animate-pulse" style="animation-delay: 0.4s"></div>
+                                </div>
+                                <div class="flex justify-between text-[10px] text-slate-600 font-bold uppercase tracking-widest">
+                                    <span>Mon</span><span>Wed</span><span>Fri</span><span>Sun</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
 
-    <footer class="py-12 border-t border-slate-200 dark:border-slate-800 text-center">
-        <p class="text-slate-500 text-sm">© 2024 Irolewe Laughter Chimezirim.</p>
+    <!-- Fintech Live Insights Lab -->
+    <section id="lab" class="py-32 px-6 bg-white/[0.01]">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 text-center reveal">
+                <h2 class="text-5xl font-black text-white uppercase tracking-tighter">System <span class="text-purple-500">Telemetry.</span></h2>
+                <p class="text-slate-500 max-w-xl mx-auto">Real-time simulation of our financial processing engine and global settlement data.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-10">
+                <!-- Live Event Stream -->
+                <div class="glass rounded-[2rem] p-10 h-[500px] overflow-hidden relative shadow-2xl">
+                    <div class="flex items-center justify-between mb-8">
+                        <span class="text-[10px] font-black uppercase text-purple-400 tracking-[0.3em]">Transaction Bus</span>
+                        <div class="w-3 h-3 rounded-full bg-purple-500 animate-pulse"></div>
+                    </div>
+                    <div id="socket-logs" class="font-mono text-[11px] space-y-4">
+                        <!-- Simulated financial events -->
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent pointer-events-none"></div>
+                </div>
+
+                <!-- Revenue Dashboard -->
+                <div class="lg:col-span-2 glass rounded-[2rem] p-10 relative overflow-hidden shadow-2xl">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-4">
+                        <div>
+                            <h4 class="text-2xl font-bold text-white mb-1">Global Revenue Stream</h4>
+                            <p class="text-slate-500 text-xs">Simulated Settlement Processing Engine</p>
+                        </div>
+                        <div class="bg-brand-500/10 text-brand-400 px-4 py-2 rounded-xl text-xs font-black tracking-widest border border-brand-500/20">STABLE_PRODUCTION</div>
+                    </div>
+                    
+                    <div class="flex items-end space-x-3 h-64 mb-10">
+                        <div class="flex-1 bg-purple-500/20 rounded-t-xl transition-all duration-1000" id="bar-1" style="height: 45%"></div>
+                        <div class="flex-1 bg-purple-500/40 rounded-t-xl transition-all duration-1000" id="bar-2" style="height: 75%"></div>
+                        <div class="flex-1 bg-purple-500/20 rounded-t-xl transition-all duration-1000" id="bar-3" style="height: 55%"></div>
+                        <div class="flex-1 bg-brand-500 rounded-t-xl transition-all duration-1000" id="bar-4" style="height: 95%"></div>
+                        <div class="flex-1 bg-purple-500/20 rounded-t-xl transition-all duration-1000" id="bar-5" style="height: 35%"></div>
+                        <div class="flex-1 bg-purple-500/40 rounded-t-xl transition-all duration-1000" id="bar-6" style="height: 65%"></div>
+                        <div class="flex-1 bg-purple-500/20 rounded-t-xl transition-all duration-1000" id="bar-7" style="height: 45%"></div>
+                    </div>
+
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 pt-10 border-t border-white/5">
+                        <div class="glass p-5 rounded-2xl text-center">
+                            <p class="text-[10px] text-slate-500 uppercase font-black mb-2">Throughput</p>
+                            <p class="text-2xl font-bold text-white">4.2k <span class="text-xs text-slate-500">tps</span></p>
+                        </div>
+                        <div class="glass p-5 rounded-2xl text-center">
+                            <p class="text-[10px] text-slate-500 uppercase font-black mb-2">Validation</p>
+                            <p class="text-2xl font-bold text-emerald-500">100%</p>
+                        </div>
+                        <div class="glass p-5 rounded-2xl text-center">
+                            <p class="text-[10px] text-slate-500 uppercase font-black mb-2">DB Latency</p>
+                            <p class="text-2xl font-bold text-white">8ms</p>
+                        </div>
+                        <div class="glass p-5 rounded-2xl text-center">
+                            <p class="text-[10px] text-slate-500 uppercase font-black mb-2">Nodes</p>
+                            <p class="text-2xl font-bold text-purple-400">24</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stack Bento Grid -->
+    <section id="stack" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 reveal">
+                <div class="glass-card p-6 rounded-2xl text-center group hover:border-primary-500/50 transition-all">
+                    <i data-lucide="layout" class="mx-auto mb-3 text-primary-500"></i>
+                    <span class="text-xs font-bold">Next.js 14</span>
+                </div>
+                <div class="glass-card p-6 rounded-2xl text-center group hover:border-blue-500/50 transition-all">
+                    <i data-lucide="code-2" class="mx-auto mb-3 text-blue-500"></i>
+                    <span class="text-xs font-bold">TypeScript</span>
+                </div>
+                <div class="glass-card p-6 rounded-2xl text-center group hover:border-emerald-500/50 transition-all">
+                    <i data-lucide="database" class="mx-auto mb-3 text-emerald-500"></i>
+                    <span class="text-xs font-bold">PostgreSQL</span>
+                </div>
+                <div class="glass-card p-6 rounded-2xl text-center group hover:border-purple-500/50 transition-all">
+                    <i data-lucide="link" class="mx-auto mb-3 text-purple-500"></i>
+                    <span class="text-xs font-bold">Prisma</span>
+                </div>
+                <div class="glass-card p-6 rounded-2xl text-center group hover:border-orange-500/50 transition-all">
+                    <i data-lucide="zap" class="mx-auto mb-3 text-orange-500"></i>
+                    <span class="text-xs font-bold">Socket.io</span>
+                </div>
+                <div class="glass-card p-6 rounded-2xl text-center group hover:border-pink-500/50 transition-all">
+                    <i data-lucide="shield" class="mx-auto mb-3 text-pink-500"></i>
+                    <span class="text-xs font-bold">NextAuth</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-48 px-6 text-center reveal">
+        <h2 class="text-5xl md:text-8xl font-black text-white mb-10 tracking-tighter">Ready to <span class="text-gradient">innovate?</span></h2>
+        <a href="mailto:laughterirolewe@gmail.com" class="inline-flex items-center px-12 py-6 bg-primary-600 text-white rounded-3xl font-black text-xl hover:scale-105 transition-transform shadow-2xl shadow-primary-500/30">
+            HIRE ME NOW <i data-lucide="send" class="ml-4"></i>
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 bg-dark border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center justify-center md:justify-start space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center">
+                            <i data-lucide="zap" class="text-white w-5 h-5 fill-white"></i>
+                        </div>
+                        <span class="text-white font-bold text-xl tracking-tighter">Irolewe <span class="text-brand-500">Laughter</span></span>
+                    </div>
+                    <p class="text-slate-500 text-sm max-w-xs leading-relaxed">Full-Stack Engineer specializing in high-performance SaaS and autonomous digital ecosystems.</p>
+                </div>
+
+                <div class="flex flex-col space-y-4">
+                    <h4 class="text-white font-bold text-sm uppercase tracking-widest">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="github.com/IsaacMission042" class="w-10 h-10 glass rounded-lg flex items-center justify-center hover:text-brand-500 transition-all"><i data-lucide="github" class="w-5 h-5"></i></a>
+                        <a href="https://www.linkedin.com/in/laughter-irolewe-42b730324" class="w-10 h-10 glass rounded-lg flex items-center justify-center hover:text-brand-500 transition-all"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                        <a href="mailto:laughterirolewe@gmail.com" class="w-10 h-10 glass rounded-lg flex items-center justify-center hover:text-brand-500 transition-all"><i data-lucide="mail" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
+                <p>© 2024 Irolewe Laughter Chimezirim. All rights reserved.</p>
+                <div class="flex space-x-8 mt-4 md:mt-0">
+                    <a href="index.html" class="hover:text-white transition-colors">Home</a>
+                    <a href="index.html#projects" class="hover:text-white transition-colors">Case Studies</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <script>
         lucide.createIcons();
 
-        // Reveal animation
+        // Dark Mode Toggle Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            const isDark = html.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-3');
+            } else {
+                nav.classList.remove('py-3');
+            }
+        });
+
+        // Create Starfield
+        const starField = document.getElementById('star-field');
+        if (starField) {
+            for (let i = 0; i < 60; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                const size = Math.random() * 2 + 'px';
+                star.style.width = size;
+                star.style.height = size;
+                star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+                starField.appendChild(star);
+            }
+        }
+
+        // Reveal animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('active');
             });
         }, { threshold: 0.1 });
-
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Fintech Socket Logs Simulator
+        const logContainer = document.getElementById('socket-logs');
+        const eventTypes = [
+            { t: 'FINANCE_SYNC: Prisma push successful', c: 'text-purple-400' },
+            { t: 'RECONCILIATION: Batch_772 processed', c: 'text-emerald-400' },
+            { t: 'FRAUD_SHEILD: Anomaly score < 0.02', c: 'text-blue-400' },
+            { t: 'AUTH: PCI_Session validated', c: 'text-slate-500' },
+            { t: 'EXCHANGE: Rate updated USD/GBP', c: 'text-brand-400' },
+            { t: 'PDF_ENGINE: Monthly report generated', c: 'text-orange-400' }
+        ];
+
+        setInterval(() => {
+            const event = eventTypes[Math.floor(Math.random() * eventTypes.length)];
+            const time = new Date().toLocaleTimeString('en-GB', { hour12: false });
+            const log = document.createElement('div');
+            log.className = `${event.c} opacity-0 transition-all duration-500 translate-x-2`;
+            log.innerHTML = `<span class="opacity-30">[${time}]</span> ${event.t}`;
+            logContainer.prepend(log);
+            setTimeout(() => log.classList.remove('opacity-0', 'translate-x-2'), 10);
+            if (logContainer.children.length > 15) logContainer.lastChild.remove();
+        }, 1200);
+
+        // Revenue Chart Simulator
+        setInterval(() => {
+            for(let i=1; i<=7; i++) {
+                const height = Math.floor(Math.random() * 70) + 20;
+                const el = document.getElementById(`bar-${i}`);
+                if (el) el.style.height = `${height}%`;
+            }
+        }, 3000);
     </script>
 </body>
 </html>
