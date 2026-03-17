@@ -63,38 +63,84 @@
         
         /* Premium Background Gradient */
         .mesh-gradient {
-            background: radial-gradient(at 0% 0%, hsla(170, 80%, 50%, 0.1) 0, transparent 50%),
-                        radial-gradient(at 50% 0%, hsla(220, 80%, 50%, 0.1) 0, transparent 50%),
-                        radial-gradient(at 100% 0%, hsla(280, 80%, 50%, 0.1) 0, transparent 50%);
+            background: 
+                radial-gradient(at 0% 0%, hsla(170, 80%, 50%, 0.15) 0, transparent 50%),
+                radial-gradient(at 50% 0%, hsla(220, 80%, 50%, 0.15) 0, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(280, 80%, 50%, 0.15) 0, transparent 50%),
+                radial-gradient(at 50% 50%, hsla(200, 80%, 50%, 0.05) 0, transparent 50%);
         }
         
         /* Animated Background Blobs */
         @keyframes orbit {
-            0% { transform: translate(0, 0); }
-            50% { transform: translate(30px, 30px); }
-            100% { transform: translate(0, 0); }
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, 30px) scale(1.1); }
+            100% { transform: translate(0, 0) scale(1); }
         }
-        .blob { animation: orbit 10s infinite ease-in-out; }
+        .blob { animation: orbit 15s infinite ease-in-out; filter: blur(60px); }
         
+        /* Starfield Effect */
+        .stars-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
         .nav-link.active { color: #14b8a6; font-weight: 700; }
-        .card-hover:hover { transform: translateY(-10px); box-shadow: 0 20px 40px -15px rgba(20, 184, 166, 0.15); }
+        .card-hover { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-hover:hover { 
+            transform: translateY(-12px) scale(1.02); 
+            box-shadow: 0 30px 60px -15px rgba(20, 184, 166, 0.2); 
+            border-color: rgba(20, 184, 166, 0.4);
+        }
         
         /* Premium Typography & Colors */
-        h1, h2, h3, h4 { letter-spacing: -0.025em; }
+        h1, h2, h3, h4 { letter-spacing: -0.03em; }
         .text-gradient {
-            background: linear-gradient(to right, #14b8a6, #3b82f6);
+            background: linear-gradient(135deg, #14b8a6, #3b82f6, #8b5cf6);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradient-flow 8s ease infinite;
+        }
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         .btn-premium {
             background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
-            box-shadow: 0 10px 20px -5px rgba(20, 184, 166, 0.3);
+            box-shadow: 0 10px 25px -5px rgba(20, 184, 166, 0.4);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .btn-premium:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 30px -5px rgba(20, 184, 166, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px -5px rgba(20, 184, 166, 0.5);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>
@@ -326,83 +372,100 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-24 bg-slate-100 dark:bg-slate-900/30">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 reveal">
-                <div>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Selected Projects</h2>
-                    <p class="text-slate-500 max-w-lg">A showcase of full-stack applications and frontend interfaces built with modern technologies.</p>
+    <section id="projects" class="py-32 bg-slate-100 dark:bg-[#020617] relative overflow-hidden">
+        <!-- Space Background Elements -->
+        <div class="stars-container opacity-20 dark:opacity-40">
+            <div class="star" style="top: 10%; left: 15%; width: 2px; height: 2px; --duration: 3s;"></div>
+            <div class="star" style="top: 30%; left: 80%; width: 1px; height: 1px; --duration: 4s;"></div>
+            <div class="star" style="top: 70%; left: 20%; width: 3px; height: 3px; --duration: 5s;"></div>
+            <div class="star" style="top: 50%; left: 50%; width: 2px; height: 2px; --duration: 3.5s;"></div>
+            <div class="star" style="top: 85%; left: 75%; width: 1px; height: 1px; --duration: 6s;"></div>
+            <div class="star" style="top: 15%; left: 45%; width: 2px; height: 2px; --duration: 4.5s;"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 reveal">
+                <div class="space-y-4">
+                    <h2 class="text-primary-600 dark:text-primary-500 font-bold tracking-[0.2em] uppercase text-sm">Portfolio</h2>
+                    <h3 class="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white">Selected Projects</h3>
+                    <p class="text-slate-500 dark:text-slate-400 max-w-lg text-lg">Exploring the intersection of design and technology through high-performance applications.</p>
                 </div>
-                <a href="https://github.com/[yourusername]" class="mt-4 md:mt-0 text-primary-500 font-bold flex items-center group">
-                    View all on GitHub <i data-lucide="arrow-right" class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                <a href="https://github.com/IsaacMission042" class="mt-8 md:mt-0 px-6 py-3 glass-card rounded-full text-primary-500 font-bold flex items-center group hover:bg-primary-500/10 transition-all">
+                    View GitHub <i data-lucide="arrow-right" class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                 </a>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
                 <!-- Project 1 -->
-                <a href="project1.html" class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all reveal">
-                    <div class="aspect-video bg-slate-200 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
-                        <div class="group-hover:scale-110 transition-transform duration-500 bg-primary-600/10 p-10 rounded-full">
-                            <i data-lucide="shopping-bag" class="w-12 h-12 text-primary-500"></i>
+                <a href="project1.html" class="group glass-card card-hover rounded-3xl overflow-hidden reveal">
+                    <div class="aspect-video bg-slate-200 dark:bg-slate-800/50 flex items-center justify-center overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1648134859196-3aa762e9440d?q=80&w=1460&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="E-Commerce Interface" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-slate-900/40 group-hover:bg-slate-900/20 transition-colors duration-500"></div>
+                        <div class="relative z-10 p-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
+                            <i data-lucide="shopping-bag" class="w-8 h-8 text-white"></i>
                         </div>
                     </div>
-                    <div class="p-6">
-                        <div class="flex gap-2 mb-3">
-                            <span class="text-[10px] font-bold tracking-widest uppercase px-2 py-1 bg-primary-500/10 text-primary-600 rounded">Next.js</span>
-                            <span class="text-[10px] font-bold tracking-widest uppercase px-2 py-1 bg-blue-500/10 text-blue-600 rounded">Stripe</span>
+                    <div class="p-8">
+                        <div class="flex gap-2 mb-4">
+                            <span class="text-[10px] font-bold tracking-widest uppercase px-3 py-1 bg-primary-500/10 text-primary-500 rounded-full">Next.js</span>
+                            <span class="text-[10px] font-bold tracking-widest uppercase px-3 py-1 bg-blue-500/10 text-blue-500 rounded-full">Stripe</span>
                         </div>
-                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary-500 transition-colors">E-Commerce Platform</h3>
-                        <p class="text-slate-500 text-sm mb-6 line-clamp-2">Full-featured platform with Stripe integration, Sanity CMS, and high-performance server-side rendering.</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-medium text-slate-400">View Details</span>
-                            <div class="flex space-x-3">
-                                <span class="p-2 bg-slate-100 dark:bg-slate-800 rounded-full hover:text-primary-500"><i data-lucide="external-link" class="w-4 h-4"></i></span>
+                        <h3 class="text-2xl font-bold mb-3 group-hover:text-primary-500 transition-colors">E-Commerce Platform</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm mb-8 leading-relaxed line-clamp-2">Full-featured platform with Stripe integration, Sanity CMS, and high-performance server-side rendering.</p>
+                        <div class="flex items-center justify-between pt-6 border-t border-slate-200/50 dark:border-slate-800/50">
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-400 group-hover:text-primary-500 transition-colors">Explorer Case Study</span>
+                            <div class="p-2 rounded-full bg-slate-100 dark:bg-slate-800 group-hover:bg-primary-500 group-hover:text-white transition-all">
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
                             </div>
                         </div>
                     </div>
                 </a>
 
                 <!-- Project 2 -->
-                <a href="project2.html" class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all reveal" style="transition-delay: 100ms;">
-                    <div class="aspect-video bg-slate-200 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
-                        <div class="group-hover:scale-110 transition-transform duration-500 bg-blue-600/10 p-10 rounded-full">
-                            <i data-lucide="check-square" class="w-12 h-12 text-blue-500"></i>
+                <a href="project2.html" class="group glass-card card-hover rounded-3xl overflow-hidden reveal" style="transition-delay: 100ms;">
+                    <div class="aspect-video bg-slate-200 dark:bg-slate-800/50 flex items-center justify-center overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1580894894513-541e068a3e2b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Collaborative Interface" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-slate-900/40 group-hover:bg-slate-900/20 transition-colors duration-500"></div>
+                        <div class="relative z-10 p-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
+                            <i data-lucide="check-square" class="w-8 h-8 text-white"></i>
                         </div>
                     </div>
-                    <div class="p-6">
-                        <div class="flex gap-2 mb-3">
-                            <span class="text-[10px] font-bold tracking-widest uppercase px-2 py-1 bg-blue-500/10 text-blue-600 rounded">React</span>
-                            <span class="text-[10px] font-bold tracking-widest uppercase px-2 py-1 bg-green-500/10 text-green-600 rounded">Socket.io</span>
+                    <div class="p-8">
+                        <div class="flex gap-2 mb-4">
+                            <span class="text-[10px] font-bold tracking-widest uppercase px-3 py-1 bg-blue-500/10 text-blue-500 rounded-full">React</span>
+                            <span class="text-[10px] font-bold tracking-widest uppercase px-3 py-1 bg-green-500/10 text-green-500 rounded-full">Socket.io</span>
                         </div>
-                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary-500 transition-colors">Collaborative Task Manager</h3>
-                        <p class="text-slate-500 text-sm mb-6 line-clamp-2">Real-time task synchronization for teams using Supabase and WebSockets.</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-medium text-slate-400">View Details</span>
-                            <div class="flex space-x-3">
-                                <span class="p-2 bg-slate-100 dark:bg-slate-800 rounded-full hover:text-primary-500"><i data-lucide="external-link" class="w-4 h-4"></i></span>
+                        <h3 class="text-2xl font-bold mb-3 group-hover:text-primary-500 transition-colors">Collaborative Task Manager</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm mb-8 leading-relaxed line-clamp-2">Real-time task synchronization for teams using Supabase and WebSockets.</p>
+                        <div class="flex items-center justify-between pt-6 border-t border-slate-200/50 dark:border-slate-800/50">
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-400 group-hover:text-primary-500 transition-colors">Explorer Case Study</span>
+                            <div class="p-2 rounded-full bg-slate-100 dark:bg-slate-800 group-hover:bg-primary-500 group-hover:text-white transition-all">
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
                             </div>
                         </div>
                     </div>
                 </a>
 
                 <!-- Project 3 -->
-                <a href="project3.html" class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all reveal" style="transition-delay: 200ms;">
-                    <div class="aspect-video bg-slate-200 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
-                        <div class="group-hover:scale-110 transition-transform duration-500 bg-purple-600/10 p-10 rounded-full">
-                            <i data-lucide="pie-chart" class="w-12 h-12 text-purple-500"></i>
+                <a href="project3.html" class="group glass-card card-hover rounded-3xl overflow-hidden reveal" style="transition-delay: 200ms;">
+                    <div class="aspect-video bg-slate-200 dark:bg-slate-800/50 flex items-center justify-center overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1647510283848-1884fb01e887?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Analytics Interface" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-slate-900/40 group-hover:bg-slate-900/20 transition-colors duration-500"></div>
+                        <div class="relative z-10 p-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
+                            <i data-lucide="pie-chart" class="w-8 h-8 text-white"></i>
                         </div>
                     </div>
-                    <div class="p-6">
-                        <div class="flex gap-2 mb-3">
-                            <span class="text-[10px] font-bold tracking-widest uppercase px-2 py-1 bg-purple-500/10 text-purple-600 rounded">Prisma</span>
-                            <span class="text-[10px] font-bold tracking-widest uppercase px-2 py-1 bg-indigo-500/10 text-indigo-600 rounded">PostgreSQL</span>
+                    <div class="p-8">
+                        <div class="flex gap-2 mb-4">
+                            <span class="text-[10px] font-bold tracking-widest uppercase px-3 py-1 bg-purple-500/10 text-purple-500 rounded-full">Prisma</span>
+                            <span class="text-[10px] font-bold tracking-widest uppercase px-3 py-1 bg-indigo-500/10 text-indigo-500 rounded-full">PostgreSQL</span>
                         </div>
-                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary-500 transition-colors">Finance Tracker</h3>
-                        <p class="text-slate-500 text-sm mb-6 line-clamp-2">Advanced dashboard with Recharts, NextAuth, and automated expense categorization.</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-medium text-slate-400">View Details</span>
-                            <div class="flex space-x-3">
-                                <span class="p-2 bg-slate-100 dark:bg-slate-800 rounded-full hover:text-primary-500"><i data-lucide="external-link" class="w-4 h-4"></i></span>
+                        <h3 class="text-2xl font-bold mb-3 group-hover:text-primary-500 transition-colors">Finance Tracker</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm mb-8 leading-relaxed line-clamp-2">Advanced dashboard with Recharts, NextAuth, and automated expense categorization.</p>
+                        <div class="flex items-center justify-between pt-6 border-t border-slate-200/50 dark:border-slate-800/50">
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-400 group-hover:text-primary-500 transition-colors">Explorer Case Study</span>
+                            <div class="p-2 rounded-full bg-slate-100 dark:bg-slate-800 group-hover:bg-primary-500 group-hover:text-white transition-all">
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
                             </div>
                         </div>
                     </div>
@@ -505,48 +568,75 @@
     </section>
 
     <!-- Insights Section -->
-    <section id="insights" class="py-24 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 reveal">
-                <div>
-                    <h2 class="text-primary-600 dark:text-primary-500 font-semibold tracking-widest uppercase mb-4">Writing</h2>
-                    <h3 class="text-4xl font-bold">Insights & Articles</h3>
+    <section id="insights" class="py-32 relative overflow-hidden bg-white dark:bg-[#030712]">
+        <!-- Space Background Elements -->
+        <div class="stars-container opacity-20 dark:opacity-30">
+            <div class="star" style="top: 20%; left: 10%; width: 1px; height: 1px; --duration: 4s;"></div>
+            <div class="star" style="top: 40%; left: 90%; width: 2px; height: 2px; --duration: 3s;"></div>
+            <div class="star" style="top: 60%; left: 30%; width: 1px; height: 1px; --duration: 5s;"></div>
+            <div class="star" style="top: 80%; left: 60%; width: 2px; height: 2px; --duration: 4.5s;"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 reveal">
+                <div class="space-y-4">
+                    <h2 class="text-primary-600 dark:text-primary-500 font-bold tracking-[0.2em] uppercase text-sm">Writing</h2>
+                    <h3 class="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white">Insights & Articles</h3>
+                    <p class="text-slate-500 dark:text-slate-400 max-w-lg text-lg">Thoughts on web architecture, performance, and the future of digital product design.</p>
                 </div>
-                <a href="#" class="mt-4 md:mt-0 text-primary-500 font-bold flex items-center group">
+                <a href="#" class="mt-8 md:mt-0 px-6 py-3 glass-card rounded-full text-primary-500 font-bold flex items-center group hover:bg-primary-500/10 transition-all">
                     Visit Blog <i data-lucide="arrow-right" class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                 </a>
             </div>
             
-            <div class="grid md:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-3 gap-12">
                 <!-- Article 1 -->
-                <a href="insight1.html" class="group cursor-pointer reveal">
-                    <div class="aspect-video bg-slate-200 dark:bg-slate-800 rounded-2xl mb-6 overflow-hidden relative">
-                        <div class="absolute inset-0 bg-primary-600/10 group-hover:bg-primary-600/20 transition-colors"></div>
-                        <i data-lucide="feather" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 text-primary-500/50 group-hover:scale-110 transition-transform"></i>
+                <a href="insight1.html" class="group glass-card card-hover rounded-3xl p-8 reveal">
+                    <div class="aspect-video bg-slate-200 dark:bg-slate-800/50 rounded-2xl mb-8 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1670057037226-b3d65909424f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Future of React" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-slate-900/40 group-hover:bg-slate-900/20 transition-colors duration-500"></div>
+                        <div class="relative z-10 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                            <i data-lucide="feather" class="w-6 h-6 text-white"></i>
+                        </div>
                     </div>
-                    <span class="text-xs font-bold text-primary-500 uppercase tracking-widest">Web Development</span>
-                    <h4 class="text-xl font-bold mt-2 group-hover:text-primary-500 transition-colors">The Future of React: Server Components and Beyond</h4>
-                    <p class="text-slate-500 mt-4 text-sm">Exploring how the shift to server-side rendering is changing the way we build modern web applications.</p>
+                    <span class="text-xs font-bold text-primary-500 uppercase tracking-widest bg-primary-500/10 px-3 py-1 rounded-full">Web Development</span>
+                    <h4 class="text-2xl font-bold mt-4 mb-4 group-hover:text-primary-500 transition-colors leading-tight">The Future of React: Server Components and Beyond</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Exploring how the shift to server-side rendering is changing the way we build modern web applications.</p>
+                    <div class="mt-8 flex items-center text-primary-500 font-bold text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all">
+                        Read Full Article <i data-lucide="chevron-right" class="ml-1 w-4 h-4"></i>
+                    </div>
                 </a>
                 <!-- Article 2 -->
-                <a href="insight2.html" class="group cursor-pointer reveal" style="transition-delay: 100ms;">
-                    <div class="aspect-video bg-slate-200 dark:bg-slate-800 rounded-2xl mb-6 overflow-hidden relative">
-                        <div class="absolute inset-0 bg-blue-600/10 group-hover:bg-blue-600/20 transition-colors"></div>
-                        <i data-lucide="shield" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 text-blue-500/50 group-hover:scale-110 transition-transform"></i>
+                <a href="insight2.html" class="group glass-card card-hover rounded-3xl p-8 reveal" style="transition-delay: 100ms;">
+                    <div class="aspect-video bg-slate-200 dark:bg-slate-800/50 rounded-2xl mb-8 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1551033406-611cf9a28f67?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Fullstack Security" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-slate-900/40 group-hover:bg-slate-900/20 transition-colors duration-500"></div>
+                        <div class="relative z-10 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                            <i data-lucide="shield" class="w-6 h-6 text-white"></i>
+                        </div>
                     </div>
-                    <span class="text-xs font-bold text-blue-500 uppercase tracking-widest">Cybersecurity</span>
-                    <h4 class="text-xl font-bold mt-2 group-hover:text-primary-500 transition-colors">Securing Your Fullstack Apps in 2024</h4>
-                    <p class="text-slate-500 mt-4 text-sm">A comprehensive guide to implementing robust authentication and data protection in your projects.</p>
+                    <span class="text-xs font-bold text-blue-500 uppercase tracking-widest bg-blue-500/10 px-3 py-1 rounded-full">Cybersecurity</span>
+                    <h4 class="text-2xl font-bold mt-4 mb-4 group-hover:text-primary-500 transition-colors leading-tight">Securing Your Fullstack Apps in 2024</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">A comprehensive guide to implementing robust authentication and data protection in your projects.</p>
+                    <div class="mt-8 flex items-center text-primary-500 font-bold text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all">
+                        Read Full Article <i data-lucide="chevron-right" class="ml-1 w-4 h-4"></i>
+                    </div>
                 </a>
                 <!-- Article 3 -->
-                <a href="insight3.html" class="group cursor-pointer reveal" style="transition-delay: 200ms;">
-                    <div class="aspect-video bg-slate-200 dark:bg-slate-800 rounded-2xl mb-6 overflow-hidden relative">
-                        <div class="absolute inset-0 bg-purple-600/10 group-hover:bg-purple-600/20 transition-colors"></div>
-                        <i data-lucide="layout" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 text-purple-500/50 group-hover:scale-110 transition-transform"></i>
+                <a href="insight3.html" class="group glass-card card-hover rounded-3xl p-8 reveal" style="transition-delay: 200ms;">
+                    <div class="aspect-video bg-slate-200 dark:bg-slate-800/50 rounded-2xl mb-8 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1536148935331-408321065b18?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Accessibility in Design" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-slate-900/40 group-hover:bg-slate-900/20 transition-colors duration-500"></div>
+                        <div class="relative z-10 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                            <i data-lucide="layout" class="w-6 h-6 text-white"></i>
+                        </div>
                     </div>
-                    <span class="text-xs font-bold text-purple-500 uppercase tracking-widest">UI/UX Design</span>
-                    <h4 class="text-xl font-bold mt-2 group-hover:text-primary-500 transition-colors">Designing for Accessibility: A Developer's Perspective</h4>
-                    <p class="text-slate-500 mt-4 text-sm">Why inclusivity is the key to creating successful digital products and how to achieve it.</p>
+                    <span class="text-xs font-bold text-purple-500 uppercase tracking-widest bg-purple-500/10 px-3 py-1 rounded-full">UI/UX Design</span>
+                    <h4 class="text-2xl font-bold mt-4 mb-4 group-hover:text-primary-500 transition-colors leading-tight">Designing for Accessibility: A Developer's Perspective</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Why inclusivity is the key to creating successful digital products and how to achieve it.</p>
+                    <div class="mt-8 flex items-center text-primary-500 font-bold text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all">
+                        Read Full Article <i data-lucide="chevron-right" class="ml-1 w-4 h-4"></i>
+                    </div>
                 </a>
             </div>
         </div>

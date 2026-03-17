@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Future of React | Irolewe Laughter</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         tailwind.config = {
@@ -22,29 +24,103 @@
         }
     </script>
     <style>
-        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); }
-        .dark .glass { background: rgba(15, 23, 42, 0.8); }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-thumb { background: #14b8a6; border-radius: 10px; }
-        
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #14b8a6;
+            border-radius: 10px;
+        }
+
         .mesh-gradient {
-            background: radial-gradient(at 0% 0%, hsla(170, 80%, 50%, 0.1) 0, transparent 50%),
-                        radial-gradient(at 50% 0%, hsla(220, 80%, 50%, 0.1) 0, transparent 50%),
-                        radial-gradient(at 100% 0%, hsla(280, 80%, 50%, 0.1) 0, transparent 50%);
+            background:
+                radial-gradient(at 0% 0%, hsla(170, 80%, 50%, 0.15) 0, transparent 50%),
+                radial-gradient(at 50% 0%, hsla(220, 80%, 50%, 0.15) 0, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(280, 80%, 50%, 0.15) 0, transparent 50%);
         }
-        
+
         @keyframes orbit {
-            0% { transform: translate(0, 0); }
-            50% { transform: translate(20px, 20px); }
-            100% { transform: translate(0, 0); }
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(20px, 20px) scale(1.05);
+            }
+
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
         }
-        .blob { animation: orbit 10s infinite ease-in-out; }
-        
-        h1, h2, h3 { letter-spacing: -0.025em; }
+
+        .blob {
+            animation: orbit 15s infinite ease-in-out;
+            filter: blur(60px);
+        }
+
+        /* Starfield Effect */
+        .stars-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        h1,
+        h2,
+        h3 {
+            letter-spacing: -0.03em;
+        }
+
         .text-gradient {
-            background: linear-gradient(to right, #14b8a6, #3b82f6);
+            background: linear-gradient(135deg, #14b8a6, #3b82f6, #8b5cf6);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -52,10 +128,12 @@
         }
     </style>
 </head>
+
 <body class="bg-slate-50 dark:bg-dark text-slate-800 dark:text-slate-200 font-sans transition-colors duration-300">
     <nav class="fixed w-full z-50 glass py-4 border-b border-slate-200 dark:border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-            <a href="index.html" class="flex items-center text-primary-600 font-bold hover:text-primary-700 transition-colors">
+            <a href="index.html"
+                class="flex items-center text-primary-600 font-bold hover:text-primary-700 transition-colors">
                 <i data-lucide="arrow-left" class="mr-2"></i> Back to Home
             </a>
             <div class="text-xl font-bold tracking-tighter">
@@ -65,17 +143,28 @@
     </nav>
 
     <div class="fixed inset-0 z-0 pointer-events-none mesh-gradient">
+        <div class="stars-container opacity-20 dark:opacity-40">
+            <div class="star" style="top: 10%; left: 15%; width: 2px; height: 2px; --duration: 3s;"></div>
+            <div class="star" style="top: 35%; left: 80%; width: 1px; height: 1px; --duration: 4.5s;"></div>
+            <div class="star" style="top: 70%; left: 25%; width: 3px; height: 3px; --duration: 5s;"></div>
+            <div class="star" style="top: 15%; left: 55%; width: 2px; height: 2px; --duration: 3.5s;"></div>
+        </div>
         <div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl blob"></div>
-        <div class="absolute bottom-1/4 -right-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl blob" style="animation-delay: -5s;"></div>
+        <div class="absolute bottom-1/4 -right-20 w-[30rem] h-[30rem] bg-blue-500/10 rounded-full blur-3xl blob"
+            style="animation-delay: -5s;"></div>
     </div>
 
     <main class="pt-32 pb-24 relative z-10">
         <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="mb-12 reveal">
-                <span class="text-primary-500 font-bold uppercase tracking-widest text-xs">Web Development • March 2024</span>
-                <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white mt-4 mb-8 text-gradient">The Future of React: Server Components and Beyond</h1>
+                <span class="text-primary-500 font-bold uppercase tracking-widest text-xs">Web Development • March
+                    2024</span>
+                <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white mt-4 mb-8 text-gradient">
+                    The Future of React: Server Components and Beyond</h1>
                 <div class="flex items-center space-x-4 mb-12">
-                    <div class="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center text-white font-bold">L</div>
+                    <div
+                        class="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center text-white font-bold">
+                        L</div>
                     <div>
                         <p class="font-bold text-slate-900 dark:text-white text-sm">Irolewe Laughter</p>
                         <p class="text-slate-500 text-xs">Fullstack Engineer</p>
@@ -83,31 +172,46 @@
                 </div>
             </div>
 
-            <div class="aspect-video bg-slate-200 dark:bg-slate-800 rounded-3xl overflow-hidden mb-12 flex items-center justify-center border border-slate-200 dark:border-slate-700 reveal">
-                <i data-lucide="feather" class="w-24 h-24 text-primary-500/30"></i>
+            <div
+                class="aspect-video bg-slate-200 dark:bg-slate-800 rounded-3xl overflow-hidden mb-12 flex items-center justify-center border border-slate-200 dark:border-slate-700 reveal relative">
+                <img src="https://images.unsplash.com/photo-1670057037226-b3d65909424f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="React Server Components Illustration" class="absolute inset-0 w-full h-full object-cover">
             </div>
 
-            <div class="prose prose-lg dark:prose-invert max-w-none text-slate-600 dark:text-slate-400 leading-relaxed space-y-6 reveal">
-                <p class="text-xl font-medium text-slate-800 dark:text-slate-200">The React ecosystem is undergoing one of its most significant transformations since the introduction of Hooks. React Server Components (RSC) represent a paradigm shift in how we think about data fetching and rendering.</p>
-                
+            <div
+                class="prose prose-lg dark:prose-invert max-w-none text-slate-600 dark:text-slate-400 leading-relaxed space-y-6 reveal">
+                <p class="text-xl font-medium text-slate-800 dark:text-slate-200">The React ecosystem is undergoing one
+                    of its most significant transformations since the introduction of Hooks. React Server Components
+                    (RSC) represent a paradigm shift in how we think about data fetching and rendering.</p>
+
                 <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-12">What are Server Components?</h2>
-                <p>Unlike traditional client-side components that ship all their JavaScript to the browser, Server Components run exclusively on the server. This means they can access your database or file system directly without needing an intermediary API layer.</p>
-                
+                <p>Unlike traditional client-side components that ship all their JavaScript to the browser, Server
+                    Components run exclusively on the server. This means they can access your database or file system
+                    directly without needing an intermediary API layer.</p>
+
                 <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-12">The Performance Edge</h2>
-                <p>By moving part of the rendering logic to the server, we drastically reduce the JavaScript bundle size. For a content-heavy application, this translates to near-instantaneous load times and improved SEO performance.</p>
-                
-                <blockquote class="border-l-4 border-primary-500 pl-6 italic text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/50 py-4 rounded-r-xl">
-                    "Server Components aren't just about speed; they're about simplifying the developer experience by bridging the gap between client and server."
+                <p>By moving part of the rendering logic to the server, we drastically reduce the JavaScript bundle
+                    size. For a content-heavy application, this translates to near-instantaneous load times and improved
+                    SEO performance.</p>
+
+                <blockquote
+                    class="border-l-4 border-primary-500 pl-6 italic text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/50 py-4 rounded-r-xl">
+                    "Server Components aren't just about speed; they're about simplifying the developer experience by
+                    bridging the gap between client and server."
                 </blockquote>
 
                 <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-12">Conclusion</h2>
-                <p>As we move into 2024, mastering RSC is no longer optional for frontend engineers. It's the foundation upon which high-performance, modern web applications will be built.</p>
+                <p>As we move into 2024, mastering RSC is no longer optional for frontend engineers. It's the foundation
+                    upon which high-performance, modern web applications will be built.</p>
             </div>
-            
-            <div class="mt-16 pt-8 border-t border-slate-200 dark:border-slate-800 flex justify-between items-center reveal">
+
+            <div
+                class="mt-16 pt-8 border-t border-slate-200 dark:border-slate-800 flex justify-between items-center reveal">
                 <div class="flex space-x-4">
-                    <button class="text-slate-500 hover:text-primary-500 transition-colors"><i data-lucide="share-2" class="w-5 h-5"></i></button>
-                    <button class="text-slate-500 hover:text-primary-500 transition-colors"><i data-lucide="heart" class="w-5 h-5"></i></button>
+                    <button class="text-slate-500 hover:text-primary-500 transition-colors"><i data-lucide="share-2"
+                            class="w-5 h-5"></i></button>
+                    <button class="text-slate-500 hover:text-primary-500 transition-colors"><i data-lucide="heart"
+                            class="w-5 h-5"></i></button>
                 </div>
                 <div class="flex space-x-2">
                     <span class="px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded-full text-xs">#ReactJS</span>
@@ -123,7 +227,7 @@
 
     <script>
         lucide.createIcons();
-        
+
         // Reveal animation
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -136,4 +240,5 @@
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
+
 </html>
